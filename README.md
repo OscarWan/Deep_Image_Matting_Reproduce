@@ -11,6 +11,7 @@ This is my CS capstone at undergraduate level about Deep Image Matting (DIM). Ba
 Download MSCOCO [2017 Train image](https://cocodataset.org/#download)
 ### PASCAL VOC Dataset
 Download VOC2012 challenge [training/validation data](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#devkit)
+
 Download [test data](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#testdata) for VOC2012 challenge
 ### Adobe DIM Dataset
 Go to the [website](https://sites.google.com/view/deepimagematting#h.p_LwcLE-VLY7-S) to contact the author for the use of the dataset.
