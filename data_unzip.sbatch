@@ -21,5 +21,5 @@ tar -xvf ../data/VOCtrainval_11-May-2012.tar
 touch VOCtrain
 unzip -a ../data/train2017.zip
 touch COCOtrain
-unzip -a Adobe_Deep_Matting_Dataset.zip
+unzip -a ../data/Adobe_Deep_Matting_Dataset.zip
 touch Adobe
