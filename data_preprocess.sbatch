@@ -17,4 +17,4 @@ NETID=mw3706
 source activate /scratch/${NETID}/dim/env
 cd /scratch/${NETID}/dim/data
 
-python data_preprocess.py
+python ../Deep_Image_Matting_Reproduce/data_preprocess.py
