@@ -1,4 +1,3 @@
-import torch
 import shutil
 import math
 import cv2 as cv
