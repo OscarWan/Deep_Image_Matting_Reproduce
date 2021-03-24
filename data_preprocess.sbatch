@@ -3,8 +3,9 @@
 #SBATCH --job-name='data_preprocess'
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=1
+#SBATCH --cpus-per-task=4
 #SBATCH --mem=100GB
+#SBATCH --gres=gpu:1
 
 module purge
 module load anaconda3/2020.07
@@ -15,6 +16,6 @@ module load gcc/10.2.0
 # Replace with your NetID
 NETID=mw3706
 source activate /scratch/${NETID}/dim/env
-cd /scratch/${NETID}/dim/data
+cd /scratch/${NETID}/dim/Deep_Image_Matting_Reproduce
 
-python ../Deep_Image_Matting_Reproduce/data_preprocess.py
+python data_preprocess.py
