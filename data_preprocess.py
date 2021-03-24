@@ -2,6 +2,7 @@ import shutil
 import math
 import cv2 as cv
 import numpy as np
+import os
 
 def process(fg_path, a_path, bg_path, out_path, dataset, folder, bg_file_path,\
             fg_file_path, is_train):
