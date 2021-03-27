@@ -3,8 +3,47 @@ import math
 import cv2 as cv
 import numpy as np
 import os
+import tqdm
+from tqdm import tqdm
+import time
+from multiprocessing import Pool
 
-def process(fg_path, a_path, bg_path, out_path, dataset, folder, bg_file_path,\
+def composite4(fg, bg, a, w, h):
+    fg = np.array(fg, np.float32)
+    bg = np.array(bg[0:h, 0:w], np.float32)
+    alpha = np.zeros((h, w, 1), np.float32)
+    alpha[:, :, 0] = a / 255.
+    comp = alpha * fg + (1 - alpha) * bg
+    comp = comp.astype(np.uint8)
+    return comp
+
+def process(im_name, bg_name, fcount, bcount):
+    im = cv.imread(fg_path + im_name)
+    a = cv.imread(a_path + im_name, 0)
+    h, w = im.shape[:2]
+    bg = cv.imread(bg_path + bg_name)
+    bh, bw = bg.shape[:2]
+    wratio = w / bw
+    hratio = h / bh
+    ratio = wratio if wratio > hratio else hratio
+    if ratio > 1:
+        bg = cv.resize(src=bg, dsize=(math.ceil(bw * ratio), math.ceil(bh * ratio)), interpolation=cv.INTER_CUBIC)
+
+    out = composite4(im, bg, a, w, h)
+    filename = out_path + str(fcount) + '_' + str(bcount) + '.png'
+    cv.imwrite(filename, out)
+
+
+def process_one_fg(fcount):
+    im_name = fg_files[fcount]
+    bcount = fcount * num_bgs
+
+    for i in range(num_bgs):
+        bg_name = bg_files[bcount]
+        process(im_name, bg_name, fcount, bcount)
+        bcount += 1
+
+def composite(fg_path, a_path, bg_path, out_path, dataset, folder, bg_file_path,\
             fg_file_path, is_train):
     # copy foreground files from downloaded folder to self-designed folder
     if not os.path.exists(fg_path):
@@ -66,34 +105,19 @@ def process(fg_path, a_path, bg_path, out_path, dataset, folder, bg_file_path,\
         num_bgs = 100
     else:
         num_bgs = 20
-    num_samples = len(fg_files) * num_bgs
-    print('num_samples: ' + str(num_samples))
-    for fcount in range(len(fg_files)):
-        im_name = fg_files[fcount]
-        bcount = fcount * num_bgs
-        for i in range(num_bgs):
-            bg_name = bg_names[bcount]
-            im = cv.imread(fg_path + im_name)
-            a = cv.imread(a_path + im_name, 0)
-            h, w = im.shape[:2]
-            bg = cv.imread(bg_path + bg_name)
-            bh, bw = bg.shape[:2]
-            wratio = w / bw
-            hratio = h / bh
-            ratio = wratio if wratio > hratio else hratio
-            if ratio > 1:
-                bg = cv.resize(src=bg, dsize=(math.ceil(bw * ratio),\
-                 math.ceil(bh * ratio)), interpolation=cv.INTER_CUBIC)
 
-            fg = np.array(im, np.float32)
-            bg = np.array(bg[0:h, 0:w], np.float32)
-            alpha = np.zeros((h, w, 1), np.float32)
-            alpha[:, :, 0] = a / 255.
-            comp = alpha * fg + (1 - alpha) * bg
-            out = comp.astype(np.uint8)
-            filename = out_path + str(fcount) + '_' + str(bcount) + '.png'
-            cv.imwrite(filename, out)
-            bcount += 1
+    # visualize the composite process
+    start = time.time()
+    with Pool(processes=16) as p:
+        max_ = len(fg_files)
+        print('num_fg_files: ' + str(max_))
+        with tqdm(total=max_) as pbar:
+            for i, _ in tqdm(enumerate(p.imap_unordered(process_one_fg, range(0, max_)))):
+                pbar.update()
+
+    end = time.time()
+    elapsed = end - start
+    print('elapsed: {} seconds'.format(elapsed))
 
 ###------ Training data preprocessing ------###
 fg_path = '../data/fg/'
@@ -112,7 +136,7 @@ bg_file_path = 'training_bg_names.txt'
 fg_file_path = 'training_fg_names.txt'
 
 print('Moving training foreground, background, alpha images to self-designed folders...')
-process(fg_path, a_path, bg_path, out_path, mscoco_path, train_folder,\
+composite(fg_path, a_path, bg_path, out_path, mscoco_path, train_folder,\
         bg_file_path, fg_file_path, True)
 
 ###------ Test Data preprocessing ------###
@@ -133,5 +157,5 @@ bg_file_test_path = 'test_bg_names.txt'
 fg_file_test_path = 'test_fg_names.txt'
 
 print('Moving test foreground, background, alpha images to self-designed folders...')
-process(fg_test_path, a_test_path, bg_test_path, out_test_path, voc_path,\
+composite(fg_test_path, a_test_path, bg_test_path, out_test_path, voc_path,\
         test_folder, bg_file_test_path, fg_file_test_path, False)
