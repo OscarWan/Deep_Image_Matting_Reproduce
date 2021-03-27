@@ -27,7 +27,7 @@ def process(fg_path, a_path, bg_path, out_path, dataset, folder, bg_file_path,\
         with open(os.path.join(folder, bg_file_path)) as f:
             bg_names = f.read().splitlines()
         os.makedirs(bg_path)
-        for bg_name in training_bg_names:
+        for bg_name in bg_names:
             src_path = os.path.join(dataset, bg_name)
             dest_path = os.path.join(bg_path, bg_name)
             shutil.copy(src_path, dest_path)
