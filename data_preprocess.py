@@ -59,6 +59,8 @@ def process(fg_path, a_path, bg_path, out_path, dataset, folder, bg_file_path,\
 
     with open(os.path.join(folder, fg_file_path)) as f:
         fg_files = f.read().splitlines()
+    with open(os.path.join(folder, bg_file_path)) as f:
+        bg_names = f.read().splitlines()
 
     if is_train:
         num_bgs = 100
