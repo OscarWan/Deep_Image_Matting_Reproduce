@@ -17,9 +17,10 @@ NETID=mw3706
 source activate /scratch/${NETID}/dim/env
 cd /scratch/${NETID}/dim/data
 
-tar -xvf ../data/VOCtrainval_11-May-2012.tar
+wget http://host.robots.ox.ac.uk/pascal/VOC/voc2008/VOCtrainval_14-Jul-2008.tar
+tar -xvf ../data/VOCtrainval_14-Jul-2008.tar
 touch VOCtrain
-unzip -a ../data/train2017.zip
+unzip -a ../data/train2014.zip
 touch COCOtrain
-unzip -a ../data/Adobe_Deep_Matting_Dataset.zip
-touch Adobe
+# unzip -a ../data/Adobe_Deep_Matting_Dataset.zip
+# touch Adobe
