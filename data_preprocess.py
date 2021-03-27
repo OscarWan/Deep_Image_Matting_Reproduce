@@ -57,7 +57,6 @@ def process(fg_path, a_path, bg_path, out_path, dataset, folder, bg_file_path,\
     if not os.path.exists(out_path):
         os.makedirs(out_path)
 
-    bg_files = bg_names
     with open(os.path.join(folder, fg_file_path)) as f:
         fg_files = f.read().splitlines()
 
@@ -71,7 +70,7 @@ def process(fg_path, a_path, bg_path, out_path, dataset, folder, bg_file_path,\
         im_name = fg_files[fcount]
         bcount = fcount * num_bgs
         for i in range(num_bgs):
-            bg_name = bg_files[bcount]
+            bg_name = bg_names[bcount]
             im = cv.imread(fg_path + im_name)
             a = cv.imread(a_path + im_name, 0)
             h, w = im.shape[:2]
