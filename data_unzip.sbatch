@@ -12,15 +12,16 @@ module load cuda/11.1.74
 module load gcc/10.2.0
 
 
-# Replace with your NetID
+## Replace with your NetID
 NETID=mw3706
 source activate /scratch/${NETID}/dim/env
 cd /scratch/${NETID}/dim/data
 
-wget http://host.robots.ox.ac.uk/pascal/VOC/voc2008/VOCtrainval_14-Jul-2008.tar
-tar -xvf ../data/VOCtrainval_14-Jul-2008.tar
-touch VOCtrain
-unzip -a ../data/train2014.zip
+# wget http://host.robots.ox.ac.uk/pascal/VOC/voc2008/VOCtrainval_14-Jul-2008.tar
+# tar -xvf VOCtrainval_14-Jul-2008.tar
+# touch VOCtrain
+# wget http://images.cocodataset.org/zips/train2014.zip
+unzip -a train2014.zip
 touch COCOtrain
-# unzip -a ../data/Adobe_Deep_Matting_Dataset.zip
+# unzip -a Adobe_Deep_Matting_Dataset.zip
 # touch Adobe
