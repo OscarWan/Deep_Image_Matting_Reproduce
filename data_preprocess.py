@@ -128,7 +128,7 @@ bg_path = '../data/bg/'
 # Path to folder where you want the composited images to go
 out_path = '../data/merged/'
 # MSCOCO data path
-mscoco_path = '../data/train2017/'
+mscoco_path = '../data/train2014/'
 # Adobe training path
 train_folder = '../data/Combined_Dataset/Training_set/'
 # file list
@@ -149,7 +149,7 @@ bg_test_path = '../data/bg_test/'
 # Path to folder where you want the composited images to go
 out_test_path = '../data/merged_test/'
 # VOC data Path
-voc_path = '../data/VOCdevkit/VOC2012/JPEGImages/'
+voc_path = '../data/VOCdevkit/VOC2008/JPEGImages/'
 # Adobe test path
 test_folder = '../data/Combined_Dataset/Test_set/'
 # file list
