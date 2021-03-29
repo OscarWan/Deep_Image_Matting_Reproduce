@@ -112,7 +112,7 @@ def composite(fg_path, a_path, bg_path, out_path, dataset, folder, bg_file_path,
         max_ = len(fg_files)
         print('num_fg_files: ' + str(max_))
         with tqdm(total=max_) as pbar:
-            for i, _ in tqdm(enumerate(p.imap_unordered(process_one_fg, [(range(0, max_), fg_files, num_bgs, bg_names)]))):
+            for i, _ in tqdm(enumerate(p.imap_unordered(process_one_fg, [range(0, max_), fg_files, num_bgs, bg_names]))):
                 pbar.update()
 
     end = time.time()
