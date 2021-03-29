@@ -34,7 +34,7 @@ def process(im_name, bg_name, fcount, bcount):
     cv.imwrite(filename, out)
 
 
-def process_one_fg(fcount):
+def process_one_fg(fcount, fg_files, num_bgs, bg_files):
     im_name = fg_files[fcount]
     bcount = fcount * num_bgs
 
@@ -45,47 +45,47 @@ def process_one_fg(fcount):
 
 def composite(fg_path, a_path, bg_path, out_path, dataset, folder, bg_file_path,\
             fg_file_path, is_train):
-    # copy foreground files from downloaded folder to self-designed folder
-    if not os.path.exists(fg_path):
-        os.makedirs(fg_path)
-
-    if is_train:
-        adobe_path = [folder + 'Adobe-licensed images/fg', folder + 'Other/fg']
-    else:
-        adobe_path = [folder + 'Adobe-licensed images/fg']
-
-    for old_folder in adobe_path:
-        fg_files = os.listdir(old_folder)
-        for fg_file in fg_files:
-            src_path = os.path.join(old_folder, fg_file)
-            dest_path = os.path.join(fg_path, fg_file)
-            shutil.copy(src_path, dest_path)
-
-    # copy background files from downloaded folder to self-designed folder
-    if not os.path.exists(bg_path):
-        with open(os.path.join(folder, bg_file_path)) as f:
-            bg_names = f.read().splitlines()
-        os.makedirs(bg_path)
-        for bg_name in bg_names:
-            src_path = os.path.join(dataset, bg_name)
-            dest_path = os.path.join(bg_path, bg_name)
-            shutil.copy(src_path, dest_path)
-
-    # copy alpha files from downloaded folder to self-designed folder
-    if not os.path.exists(a_path):
-        os.makedirs(a_path)
-
-    if is_train:
-        adobe_path = [folder + 'Adobe-licensed images/alpha', folder + 'Other/alpha']
-    else:
-        adobe_path = [folder + 'Adobe-licensed images/alpha']
-
-    for old_folder in adobe_path:
-        a_files = os.listdir(old_folder)
-        for a_file in a_files:
-            src_path = os.path.join(old_folder, a_file)
-            dest_path = os.path.join(a_path, a_file)
-            shutil.copy(src_path, dest_path)
+    # # copy foreground files from downloaded folder to self-designed folder
+    # if not os.path.exists(fg_path):
+    #     os.makedirs(fg_path)
+    #
+    # if is_train:
+    #     adobe_path = [folder + 'Adobe-licensed images/fg', folder + 'Other/fg']
+    # else:
+    #     adobe_path = [folder + 'Adobe-licensed images/fg']
+    #
+    # for old_folder in adobe_path:
+    #     fg_files = os.listdir(old_folder)
+    #     for fg_file in fg_files:
+    #         src_path = os.path.join(old_folder, fg_file)
+    #         dest_path = os.path.join(fg_path, fg_file)
+    #         shutil.copy(src_path, dest_path)
+    #
+    # # copy background files from downloaded folder to self-designed folder
+    # if not os.path.exists(bg_path):
+    #     with open(os.path.join(folder, bg_file_path)) as f:
+    #         bg_names = f.read().splitlines()
+    #     os.makedirs(bg_path)
+    #     for bg_name in bg_names:
+    #         src_path = os.path.join(dataset, bg_name)
+    #         dest_path = os.path.join(bg_path, bg_name)
+    #         shutil.copy(src_path, dest_path)
+    #
+    # # copy alpha files from downloaded folder to self-designed folder
+    # if not os.path.exists(a_path):
+    #     os.makedirs(a_path)
+    #
+    # if is_train:
+    #     adobe_path = [folder + 'Adobe-licensed images/alpha', folder + 'Other/alpha']
+    # else:
+    #     adobe_path = [folder + 'Adobe-licensed images/alpha']
+    #
+    # for old_folder in adobe_path:
+    #     a_files = os.listdir(old_folder)
+    #     for a_file in a_files:
+    #         src_path = os.path.join(old_folder, a_file)
+    #         dest_path = os.path.join(a_path, a_file)
+    #         shutil.copy(src_path, dest_path)
 
     # Composite to make new training data in the out_path
     if is_train:
@@ -112,7 +112,7 @@ def composite(fg_path, a_path, bg_path, out_path, dataset, folder, bg_file_path,
         max_ = len(fg_files)
         print('num_fg_files: ' + str(max_))
         with tqdm(total=max_) as pbar:
-            for i, _ in tqdm(enumerate(p.imap_unordered(process_one_fg, range(0, max_)))):
+            for i, _ in tqdm(enumerate(p.imap_unordered(process_one_fg, [(range(0, max_), fg_files, num_bgs, bg_names)]))):
                 pbar.update()
 
     end = time.time()
