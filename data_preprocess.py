@@ -72,7 +72,7 @@ if __name__ == '__main__':
     fg_file_path = 'training_fg_names.txt'
 
     print('Moving training foreground, background, alpha images to self-designed folders...')
-    composite(fg_path, a_path, bg_path, out_path, mscoco_path, train_folder,\
+    move_file(fg_path, a_path, bg_path, out_path, mscoco_path, train_folder,\
             bg_file_path, fg_file_path, True)
 
     ###------ Test Data preprocessing ------###
@@ -93,5 +93,5 @@ if __name__ == '__main__':
     fg_file_test_path = 'test_fg_names.txt'
 
     print('Moving test foreground, background, alpha images to self-designed folders...')
-    composite(fg_test_path, a_test_path, bg_test_path, out_test_path, voc_path,\
+    move_file(fg_test_path, a_test_path, bg_test_path, out_test_path, voc_path,\
             test_folder, bg_file_test_path, fg_file_test_path, False)
