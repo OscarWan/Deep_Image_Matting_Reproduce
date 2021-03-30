@@ -1,7 +1,7 @@
 import numpy as np
-import torch
+import pytorch as torch
 from tensorboardX import SummaryWriter
-from torch import nn
+from pytorch import nn
 
 from config import device, im_size, grad_clip, print_freq
 from data_gen import DIMDataset

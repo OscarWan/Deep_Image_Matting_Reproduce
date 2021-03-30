@@ -4,7 +4,7 @@ import os
 
 import cv2 as cv
 import numpy as np
-import torch
+import pytorch as torch
 
 from config import im_size, epsilon, epsilon_sqr
 
