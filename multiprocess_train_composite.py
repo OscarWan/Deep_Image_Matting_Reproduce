@@ -4,6 +4,7 @@ from multiprocessing import Pool
 import cv2 as cv
 import numpy as np
 import tqdm
+from tqdm import tqdm
 import os
 
 # path to provided foreground
