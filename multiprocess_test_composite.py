@@ -4,6 +4,7 @@ from multiprocessing import Pool
 import cv2 as cv
 import numpy as np
 import tqdm
+import os
 
 # path to foreground images
 fg_test_path = '../data/fg_test/'
