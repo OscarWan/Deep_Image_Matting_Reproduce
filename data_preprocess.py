@@ -120,43 +120,45 @@ def composite(fg_path, a_path, bg_path, out_path, dataset, folder, bg_file_path,
     elapsed = end - start
     print('elapsed: {} seconds'.format(elapsed))
 
-###------ Training data preprocessing ------###
-fg_path = '../data/fg/'
-# path to provided alpha mattes
-a_path = '../data/mask/'
-# Path to background images (MSCOCO)
-bg_path = '../data/bg/'
-# Path to folder where you want the composited images to go
-out_path = '../data/merged/'
-# MSCOCO data path
-mscoco_path = '../data/train2014/'
-# Adobe training path
-train_folder = '../data/Combined_Dataset/Training_set/'
-# file list
-bg_file_path = 'training_bg_names.txt'
-fg_file_path = 'training_fg_names.txt'
 
-print('Moving training foreground, background, alpha images to self-designed folders...')
-composite(fg_path, a_path, bg_path, out_path, mscoco_path, train_folder,\
-        bg_file_path, fg_file_path, True)
+if __name__ == '__main__':
+    ###------ Training data preprocessing ------###
+    fg_path = '../data/fg/'
+    # path to provided alpha mattes
+    a_path = '../data/mask/'
+    # Path to background images (MSCOCO)
+    bg_path = '../data/bg/'
+    # Path to folder where you want the composited images to go
+    out_path = '../data/merged/'
+    # MSCOCO data path
+    mscoco_path = '../data/train2014/'
+    # Adobe training path
+    train_folder = '../data/Combined_Dataset/Training_set/'
+    # file list
+    bg_file_path = 'training_bg_names.txt'
+    fg_file_path = 'training_fg_names.txt'
 
-###------ Test Data preprocessing ------###
-# path to foreground images
-fg_test_path = '../data/fg_test/'
-# path to provided alpha mattes
-a_test_path = '../data/mask_test/'
-# Path to background images (MSCOCO)
-bg_test_path = '../data/bg_test/'
-# Path to folder where you want the composited images to go
-out_test_path = '../data/merged_test/'
-# VOC data Path
-voc_path = '../data/VOCdevkit/VOC2008/JPEGImages/'
-# Adobe test path
-test_folder = '../data/Combined_Dataset/Test_set/'
-# file list
-bg_file_test_path = 'test_bg_names.txt'
-fg_file_test_path = 'test_fg_names.txt'
+    print('Moving training foreground, background, alpha images to self-designed folders...')
+    composite(fg_path, a_path, bg_path, out_path, mscoco_path, train_folder,\
+            bg_file_path, fg_file_path, True)
 
-print('Moving test foreground, background, alpha images to self-designed folders...')
-composite(fg_test_path, a_test_path, bg_test_path, out_test_path, voc_path,\
-        test_folder, bg_file_test_path, fg_file_test_path, False)
+    ###------ Test Data preprocessing ------###
+    # path to foreground images
+    fg_test_path = '../data/fg_test/'
+    # path to provided alpha mattes
+    a_test_path = '../data/mask_test/'
+    # Path to background images (MSCOCO)
+    bg_test_path = '../data/bg_test/'
+    # Path to folder where you want the composited images to go
+    out_test_path = '../data/merged_test/'
+    # VOC data Path
+    voc_path = '../data/VOCdevkit/VOC2008/JPEGImages/'
+    # Adobe test path
+    test_folder = '../data/Combined_Dataset/Test_set/'
+    # file list
+    bg_file_test_path = 'test_bg_names.txt'
+    fg_file_test_path = 'test_fg_names.txt'
+
+    print('Moving test foreground, background, alpha images to self-designed folders...')
+    composite(fg_test_path, a_test_path, bg_test_path, out_test_path, voc_path,\
+            test_folder, bg_file_test_path, fg_file_test_path, False)
