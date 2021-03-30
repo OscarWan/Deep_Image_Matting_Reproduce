@@ -6,47 +6,47 @@ from multiprocess_test_composite import do_composite_test
 
 def move_file(fg_path, a_path, bg_path, out_path, dataset, folder, bg_file_path,\
             fg_file_path, is_train):
-    # # copy foreground files from downloaded folder to self-designed folder
-    # if not os.path.exists(fg_path):
-    #     os.makedirs(fg_path)
-    #
-    # if is_train:
-    #     adobe_path = [folder + 'Adobe-licensed images/fg', folder + 'Other/fg']
-    # else:
-    #     adobe_path = [folder + 'Adobe-licensed images/fg']
-    #
-    # for old_folder in adobe_path:
-    #     fg_files = os.listdir(old_folder)
-    #     for fg_file in fg_files:
-    #         src_path = os.path.join(old_folder, fg_file)
-    #         dest_path = os.path.join(fg_path, fg_file)
-    #         shutil.copy(src_path, dest_path)
-    #
-    # # copy background files from downloaded folder to self-designed folder
-    # if not os.path.exists(bg_path):
-    #     with open(os.path.join(folder, bg_file_path)) as f:
-    #         bg_names = f.read().splitlines()
-    #     os.makedirs(bg_path)
-    #     for bg_name in bg_names:
-    #         src_path = os.path.join(dataset, bg_name)
-    #         dest_path = os.path.join(bg_path, bg_name)
-    #         shutil.copy(src_path, dest_path)
-    #
-    # # copy alpha files from downloaded folder to self-designed folder
-    # if not os.path.exists(a_path):
-    #     os.makedirs(a_path)
-    #
-    # if is_train:
-    #     adobe_path = [folder + 'Adobe-licensed images/alpha', folder + 'Other/alpha']
-    # else:
-    #     adobe_path = [folder + 'Adobe-licensed images/alpha']
-    #
-    # for old_folder in adobe_path:
-    #     a_files = os.listdir(old_folder)
-    #     for a_file in a_files:
-    #         src_path = os.path.join(old_folder, a_file)
-    #         dest_path = os.path.join(a_path, a_file)
-    #         shutil.copy(src_path, dest_path)
+    # copy foreground files from downloaded folder to self-designed folder
+    if not os.path.exists(fg_path):
+        os.makedirs(fg_path)
+    
+    if is_train:
+        adobe_path = [folder + 'Adobe-licensed images/fg', folder + 'Other/fg']
+    else:
+        adobe_path = [folder + 'Adobe-licensed images/fg']
+
+    for old_folder in adobe_path:
+        fg_files = os.listdir(old_folder)
+        for fg_file in fg_files:
+            src_path = os.path.join(old_folder, fg_file)
+            dest_path = os.path.join(fg_path, fg_file)
+            shutil.copy(src_path, dest_path)
+
+    # copy background files from downloaded folder to self-designed folder
+    if not os.path.exists(bg_path):
+        with open(os.path.join(folder, bg_file_path)) as f:
+            bg_names = f.read().splitlines()
+        os.makedirs(bg_path)
+        for bg_name in bg_names:
+            src_path = os.path.join(dataset, bg_name)
+            dest_path = os.path.join(bg_path, bg_name)
+            shutil.copy(src_path, dest_path)
+
+    # copy alpha files from downloaded folder to self-designed folder
+    if not os.path.exists(a_path):
+        os.makedirs(a_path)
+
+    if is_train:
+        adobe_path = [folder + 'Adobe-licensed images/alpha', folder + 'Other/alpha']
+    else:
+        adobe_path = [folder + 'Adobe-licensed images/alpha']
+
+    for old_folder in adobe_path:
+        a_files = os.listdir(old_folder)
+        for a_file in a_files:
+            src_path = os.path.join(old_folder, a_file)
+            dest_path = os.path.join(a_path, a_file)
+            shutil.copy(src_path, dest_path)
 
     # Jumping to related files to do composition
     if is_train:
