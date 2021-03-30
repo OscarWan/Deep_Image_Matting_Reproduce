@@ -15,8 +15,6 @@ a_path = '../data/mask/'
 bg_path = '../data/bg/'
 # Path to folder where you want the composited images to go
 out_path = '../data/merged/'
-# MSCOCO data path
-mscoco_path = '../data/train2014/'
 # Adobe training path
 train_folder = '../data/Combined_Dataset/Training_set/'
 # file list
@@ -58,7 +56,6 @@ def process(im_name, bg_name, fcount, bcount):
 
 
 def process_one_fg(fcount):
-    print(fcount)
     im_name = fg_files[fcount]
     bcount = fcount * num_bgs
 

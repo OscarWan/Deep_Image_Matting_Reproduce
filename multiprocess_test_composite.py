@@ -15,8 +15,6 @@ a_test_path = '../data/mask_test/'
 bg_test_path = '../data/bg_test/'
 # Path to folder where you want the composited images to go
 out_test_path = '../data/merged_test/'
-# VOC data Path
-voc_path = '../data/VOCdevkit/VOC2008/JPEGImages/'
 # Adobe test path
 test_folder = '../data/Combined_Dataset/Test_set/'
 # file list
@@ -53,12 +51,11 @@ def process(im_name, bg_name, fcount, bcount):
         bg = cv.resize(src=bg, dsize=(math.ceil(bw * ratio), math.ceil(bh * ratio)), interpolation=cv.INTER_CUBIC)
 
     out = composite4(im, bg, a, w, h)
-    filename = out_path + str(fcount) + '_' + str(bcount) + '.png'
+    filename = out_test_path + str(fcount) + '_' + str(bcount) + '.png'
     cv.imwrite(filename, out)
 
 
 def process_one_fg(fcount):
-    print(fcount)
     im_name = fg_files[fcount]
     bcount = fcount * num_bgs
 

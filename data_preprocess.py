@@ -55,25 +55,25 @@ def move_file(fg_path, a_path, bg_path, out_path, dataset, folder, bg_file_path,
         do_composite_test()
 
 if __name__ == '__main__':
-    ###------ Training data preprocessing ------###
-    fg_path = '../data/fg/'
-    # path to provided alpha mattes
-    a_path = '../data/mask/'
-    # Path to background images (MSCOCO)
-    bg_path = '../data/bg/'
-    # Path to folder where you want the composited images to go
-    out_path = '../data/merged/'
-    # MSCOCO data path
-    mscoco_path = '../data/train2014/'
-    # Adobe training path
-    train_folder = '../data/Combined_Dataset/Training_set/'
-    # file list
-    bg_file_path = 'training_bg_names.txt'
-    fg_file_path = 'training_fg_names.txt'
-
-    print('Moving training foreground, background, alpha images to self-designed folders...')
-    move_file(fg_path, a_path, bg_path, out_path, mscoco_path, train_folder,\
-            bg_file_path, fg_file_path, True)
+    # ###------ Training data preprocessing ------###
+    # fg_path = '../data/fg/'
+    # # path to provided alpha mattes
+    # a_path = '../data/mask/'
+    # # Path to background images (MSCOCO)
+    # bg_path = '../data/bg/'
+    # # Path to folder where you want the composited images to go
+    # out_path = '../data/merged/'
+    # # MSCOCO data path
+    # mscoco_path = '../data/train2014/'
+    # # Adobe training path
+    # train_folder = '../data/Combined_Dataset/Training_set/'
+    # # file list
+    # bg_file_path = 'training_bg_names.txt'
+    # fg_file_path = 'training_fg_names.txt'
+    #
+    # print('Moving training foreground, background, alpha images to self-designed folders...')
+    # move_file(fg_path, a_path, bg_path, out_path, mscoco_path, train_folder,\
+    #         bg_file_path, fg_file_path, True)
 
     ###------ Test Data preprocessing ------###
     # path to foreground images
