@@ -15,7 +15,7 @@ module load gcc/10.2.0
 
 # Replace with your NetID
 NETID=mw3706
-source activate /scratch/${NETID}/dim/env
+source activate python36
 cd /scratch/${NETID}/dim/Deep_Image_Matting_Reproduce
 
 python train.py
