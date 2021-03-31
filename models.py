@@ -1,5 +1,5 @@
-import pytorch as torch
-import pytorch.nn as nn
+import torch
+import torch.nn as nn
 from torchsummary import summary
 
 from config import device, im_size
