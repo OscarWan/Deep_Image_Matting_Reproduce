@@ -18,4 +18,5 @@ NETID=mw3706
 source activate python36
 cd /scratch/${NETID}/dim/Deep_Image_Matting_Reproduce
 
+python data_gen.py
 python train.py
