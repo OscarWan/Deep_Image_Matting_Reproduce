@@ -1,7 +1,7 @@
 #!/bin/sh -e
 #SBATCH --time=24:00:00
 #SBATCH --job-name='training'
-#SBATCH --nodes=1
+#SBATCH --nodes=4
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=32
 #SBATCH --mem=100GB
