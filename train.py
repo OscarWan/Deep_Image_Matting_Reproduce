@@ -13,12 +13,7 @@ from utils import parse_args, save_checkpoint, AverageMeter, clip_gradient, \
 def train_net(args):
     torch.manual_seed(7)
     np.random.seed(7)
-    checkpoint = args.checkpoint
-    if args.checkpoint is None:
-        print('no checkpoint')
-    if args.optimizer is None:
-        print('no optimizer')
-        pass
+    checkpoint = 'BEST_checkpoint.tar'#args.checkpoint
     start_epoch = 0
     best_loss = float('inf')
     writer = SummaryWriter()
