@@ -22,6 +22,7 @@ def train_net(args):
 
     # Initialize / load checkpoint
     if checkpoint is None:
+        print("Initialize checkpoint")
         model = DIMModel(n_classes=1, in_channels=4, is_unpooling=True, pretrain=True)
         model = nn.DataParallel(model)
 
@@ -32,6 +33,7 @@ def train_net(args):
             optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
 
     else:
+        print("Load best checkpoint in the history")
         checkpoint = torch.load(checkpoint)
         start_epoch = checkpoint['epoch'] + 1
         epochs_since_improvement = checkpoint['epochs_since_improvement']
