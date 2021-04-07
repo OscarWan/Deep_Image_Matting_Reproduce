@@ -29,9 +29,9 @@ cd /scratch/${NETID}/dim/data
 
 mkdir alphamatting
 cd alphamatting
-wget http://www.alphamatting.com/datasets/zip/input_lowres.zip
-unzip -a input_lowres.zip
-touch evalinput
+# wget http://www.alphamatting.com/datasets/zip/input_lowres.zip
+# unzip -a input_lowres.zip
+# touch evalinput
 wget http://www.alphamatting.com/datasets/zip/trimap_lowres.zip
-unzip -a trimap_lowers.zip
+unzip -a trimap_lowres.zip
 touch evaltrimap
