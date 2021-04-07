@@ -27,11 +27,11 @@ cd /scratch/${NETID}/dim/data
 # unzip -a Adobe_Deep_Matting_Dataset.zip
 # touch Adobe
 
-mkdir alphamatting
+# mkdir alphamatting
 cd alphamatting
 # wget http://www.alphamatting.com/datasets/zip/input_lowres.zip
 # unzip -a input_lowres.zip
 # touch evalinput
-wget http://www.alphamatting.com/datasets/zip/trimap_lowres.zip
+# wget http://www.alphamatting.com/datasets/zip/trimap_lowres.zip
 unzip -a trimap_lowres.zip
 touch evaltrimap
