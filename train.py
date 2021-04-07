@@ -14,6 +14,11 @@ def train_net(args):
     torch.manual_seed(7)
     np.random.seed(7)
     checkpoint = args.checkpoint
+    if args.checkpoint is None:
+        print('no checkpoint')
+    if args.optimizer is None:
+        print('no optimizer')
+        pass
     start_epoch = 0
     best_loss = float('inf')
     writer = SummaryWriter()
