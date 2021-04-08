@@ -30,8 +30,8 @@ touch Adobe
 mkdir alphamatting
 cd alphamatting
 wget http://www.alphamatting.com/datasets/zip/input_lowres.zip
-unzip -a input_lowres.zip
+unzip -a input_lowres.zip -d input_lowres
 touch evalinput
 wget http://www.alphamatting.com/datasets/zip/trimap_lowres.zip
-unzip -a trimap_lowres.zip
+unzip trimap_lowres.zip -d trimap_lowres
 touch evaltrimap

@@ -13,7 +13,7 @@ from utils import ensure_folder
 IMG_FOLDER = '../data/alphamatting/input_lowres'
 TRIMAP_FOLDERS = ['../data/alphamatting/trimap_lowres/Trimap1', \
                     '../data/alphamatting/trimap_lowres/Trimap2', \
-                    'data/alphamatting/trimap_lowres/Trimap3']
+                    '../data/alphamatting/trimap_lowres/Trimap3']
 OUTPUT_FOLDERS = ['../images/alphamatting/output_lowres/Trimap1', \
                     '../images/alphamatting/output_lowres/Trimap2', \
                     '../images/alphamatting/output_lowres/Trimap3', ]
