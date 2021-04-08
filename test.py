@@ -77,7 +77,7 @@ def composite4_test(fg, bg, a, w, h, trimap):
     new_a[y:y + h, x:x + w] = a
     new_trimap = np.zeros((bg_h, bg_w), np.uint8)
     new_trimap[y:y + h, x:x + w] = trimap
-    cv.imwrite('images/test/new/' + trimap_name, new_trimap)
+    cv.imwrite('../images/test/new/' + trimap_name, new_trimap)
     new_im = bg.copy()
     new_im[y:y + h, x:x + w] = im
     # cv.imwrite('images/test/new_im/'+trimap_name,new_im)
@@ -109,7 +109,7 @@ if __name__ == '__main__':
         trimap_name = im_name.split('.')[0] + '_' + str(i) + '.png'
         # print('trimap_name: ' + str(trimap_name))
 
-        trimap = cv.imread('data/Combined_Dataset/Test_set/Adobe-licensed images/trimaps/' + trimap_name, 0)
+        trimap = cv.imread('../data/Combined_Dataset/Test_set/Adobe-licensed images/trimaps/' + trimap_name, 0)
         # print('trimap: ' + str(trimap))
 
         i += 1
@@ -140,7 +140,7 @@ if __name__ == '__main__':
 
         pred[new_trimap == 0] = 0.0
         pred[new_trimap == 255] = 1.0
-        cv.imwrite('images/test/out/' + trimap_name, pred * 255)
+        cv.imwrite('../images/test/out/' + trimap_name, pred * 255)
 
         # Calculate loss
         # loss = criterion(alpha_out, alpha_label)
