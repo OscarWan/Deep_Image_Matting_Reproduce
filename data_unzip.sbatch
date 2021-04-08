@@ -18,20 +18,20 @@ source activate python36
 cd /scratch/${NETID}/dim/data
 
 
-# wget http://host.robots.ox.ac.uk/pascal/VOC/voc2008/VOCtrainval_14-Jul-2008.tar
-# tar -xvf VOCtrainval_14-Jul-2008.tar
-# touch VOCtrain
-# wget http://images.cocodataset.org/zips/train2014.zip
-# unzip -a train2014.zip
-# touch COCOtrain
-# unzip -a Adobe_Deep_Matting_Dataset.zip
-# touch Adobe
+wget http://host.robots.ox.ac.uk/pascal/VOC/voc2008/VOCtrainval_14-Jul-2008.tar
+tar -xvf VOCtrainval_14-Jul-2008.tar
+touch VOCtrain
+wget http://images.cocodataset.org/zips/train2014.zip
+unzip -a train2014.zip
+touch COCOtrain
+unzip -a Adobe_Deep_Matting_Dataset.zip
+touch Adobe
 
-# mkdir alphamatting
+mkdir alphamatting
 cd alphamatting
-# wget http://www.alphamatting.com/datasets/zip/input_lowres.zip
-# unzip -a input_lowres.zip
-# touch evalinput
-# wget http://www.alphamatting.com/datasets/zip/trimap_lowres.zip
+wget http://www.alphamatting.com/datasets/zip/input_lowres.zip
+unzip -a input_lowres.zip
+touch evalinput
+wget http://www.alphamatting.com/datasets/zip/trimap_lowres.zip
 unzip -a trimap_lowres.zip
 touch evaltrimap
