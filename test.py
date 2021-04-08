@@ -27,6 +27,7 @@ def gen_test_names():
 
 
 def process_test(im_name, bg_name, trimap):
+    # print(bg_path_test + bg_name)
     im = cv.imread(fg_path_test + im_name)
     a = cv.imread(a_path_test + im_name, 0)
     h, w = im.shape[:2]
@@ -39,6 +40,23 @@ def process_test(im_name, bg_name, trimap):
         bg = cv.resize(src=bg, dsize=(math.ceil(bw * ratio), math.ceil(bh * ratio)), interpolation=cv.INTER_CUBIC)
 
     return composite4_test(im, bg, a, w, h, trimap)
+
+
+# def composite4_test(fg, bg, a, w, h):
+#     fg = np.array(fg, np.float32)
+#     bg_h, bg_w = bg.shape[:2]
+#     x = max(0, int((bg_w - w)/2))
+#     y = max(0, int((bg_h - h)/2))
+#     bg = np.array(bg[y:y + h, x:x + w], np.float32)
+#     alpha = np.zeros((h, w, 1), np.float32)
+#     alpha[:, :, 0] = a / 255.
+#     im = alpha * fg + (1 - alpha) * bg
+#     im = im.astype(np.uint8)
+#     print('im.shape: ' + str(im.shape))
+#     print('a.shape: ' + str(a.shape))
+#     print('fg.shape: ' + str(fg.shape))
+#     print('bg.shape: ' + str(bg.shape))
+#     return im, a, fg, bg
 
 
 def composite4_test(fg, bg, a, w, h, trimap):
