@@ -21,7 +21,7 @@ OUTPUT_FOLDERS = ['../images/alphamatting/output_lowres/Trimap1', \
 if __name__ == '__main__':
     checkpoint = 'BEST_checkpoint.tar'
     checkpoint = torch.load(checkpoint)
-    model = checkpoint['model'].module
+    model = checkpoint['model']#.module
     model = model.to(device)
     model.eval()
 
