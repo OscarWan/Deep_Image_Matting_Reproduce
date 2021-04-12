@@ -15,8 +15,10 @@ module load gcc/10.2.0
 
 # Replace with your NetID
 NETID=mw3706
-source activate python36
-cd /scratch/${NETID}/dim/Deep_Image_Matting_Reproduce
+cd /scratch/${NETID}/dim
+singularity exec --overlay overlay-5GB-200K.ext3 /scratch/work/public/singularity/cuda11.1-cudnn8-devel-ubuntu18.04.sif /bin/bash
+source /ext3/env.sh
+cd Deep_Image_Matting_Reproduce
 
 # python data_gen.py
 python train.py
