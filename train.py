@@ -11,7 +11,6 @@ from utils import parse_args, save_checkpoint, AverageMeter, clip_gradient, \
 
 
 def train_net(args):
-    torch.nn.Module.dump_patches = True
     torch.manual_seed(7)
     np.random.seed(7)
     checkpoint = args.checkpoint
@@ -100,6 +99,7 @@ def train_net(args):
 
 
 def train(train_loader, model, optimizer, epoch, logger):
+    torch.nn.Module.dump_patches = True
     model.train()  # train mode (dropout and batchnorm is used)
 
     losses = AverageMeter()
