@@ -170,6 +170,7 @@ class DIMModel(nn.Module):
 
 
 if __name__ == '__main__':
+    torch.nn.Module.dump_patches = True
     model = DIMModel().to(device)
 
     summary(model, (4, im_size, im_size))
