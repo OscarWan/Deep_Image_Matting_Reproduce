@@ -13,9 +13,10 @@ module purge
 NETID=mw3706
 cd /scratch/${NETID}/dim
 
-singularity exec --nv --overlay /home/mw3706/pytorch-1.1.0.ext3:ro \
-		/scratch/work/public/singularity/cuda9.0-cudnn7-devel-ubuntu16.04-20201127.sif \
-		/bin/bash -c "
+singularity exec --nv \
+	    --overlay /scratch/mw3706/dim/overlay-5GB-200K.ext3:ro \
+	    /scratch/work/public/singularity/cuda11.1-cudnn8-devel-ubuntu18.04.sif \
+	    /bin/bash -c "
 source /ext3/env.sh
 cd Deep_Image_Matting_Reproduce
 python test.py
