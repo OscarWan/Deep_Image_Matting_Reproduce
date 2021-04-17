@@ -1,6 +1,5 @@
 import numpy as np
 import torch
-import os
 from tensorboardX import SummaryWriter
 from torch import nn
 
@@ -35,7 +34,7 @@ def train_net(args):
 
     else:
         print("Load best checkpoint in the history")
-        checkpoint = torch.load(checkpoint)
+        checkpoint = torch.load(checkpoint, map_location={'cuda:1':'cuda:0'})
         start_epoch = checkpoint['epoch'] + 1
         epochs_since_improvement = checkpoint['epochs_since_improvement']
         model = checkpoint['model']#.module
@@ -59,7 +58,7 @@ def train_net(args):
 
         if args.optimizer == 'sgd' and epochs_since_improvement > 0 and epochs_since_improvement % 2 == 0:
             checkpoint = 'BEST_checkpoint.tar'
-            checkpoint = torch.load(checkpoint)
+            checkpoint = torch.load(checkpoint, map_location={'cuda:1':'cuda:0'})
             model = checkpoint['model']
             optimizer = checkpoint['optimizer']
             decays_since_improvement += 1
@@ -181,5 +180,4 @@ def main():
 
 
 if __name__ == '__main__':
-    # os.environ['CUDA_VISIBLE_DEVICES'] = '1'
     main()
