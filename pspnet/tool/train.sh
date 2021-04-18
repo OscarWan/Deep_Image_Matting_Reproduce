@@ -1,9 +1,13 @@
 #!/bin/sh
 
 # uncomment for slurm
-#SBATCH -p gpu
 #SBATCH --gres=gpu:8
-#SBATCH -c 80
+#SBATCH --time=24:00:00
+#SBATCH --job-name='data_preprocess'
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=50GB
 
 module purge
 
