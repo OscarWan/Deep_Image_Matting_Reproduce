@@ -1,7 +1,7 @@
 DATA:
-  data_root: dataset/ade20k
-  train_list: dataset/ade20k/list/training.txt
-  val_list: dataset/ade20k/list/validation.txt
+  data_root: data/ade20k
+  train_list: data/ade20k/list/training.txt
+  val_list: data/ade20k/list/validation.txt
   classes: 150
 
 TRAIN:
@@ -42,7 +42,7 @@ Distributed:
   rank: 0
 
 TEST:
-  test_list: dataset/ade20k/list/validation.txt
+  test_list: data/ade20k/list/validation.txt
   split: val  # split in [train, val and test]
   base_size: 512  # based size for scaling
   test_h: 473
