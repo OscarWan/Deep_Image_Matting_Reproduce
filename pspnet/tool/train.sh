@@ -1,12 +1,12 @@
 #!/bin/sh
 
 # uncomment for slurm
-#SBATCH --gres=gpu:4
+#SBATCH --gres=gpu:2
 #SBATCH --time=24:00:00
-#SBATCH --job-name='data_preprocess'
+#SBATCH --job-name='pspnet'
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=16
+#SBATCH --cpus-per-task=4
 #SBATCH --mem=50GB
 
 module purge
