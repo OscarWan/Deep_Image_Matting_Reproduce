@@ -4,8 +4,8 @@
 #SBATCH --gres=gpu:8
 #SBATCH --time=24:00:00
 #SBATCH --job-name='pspnet'
-#SBATCH --nodes=4
-#SBATCH --ntasks-per-node=8
+#SBATCH --nodes=2
+#SBATCH --ntasks-per-node=4
 #SBATCH --cpus-per-task=16
 #SBATCH --mem=100GB
 
