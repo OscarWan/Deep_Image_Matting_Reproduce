@@ -52,7 +52,7 @@ TEST:
   index_start: 0  # evaluation start index in list
   index_step: 0  # evaluation step index in list, 0 means to end
   test_gpu: [0]
-  model_path: exp/ade20k/pspnet50/model/train_epoch_100.pth  # evaluation model path
+  model_path: initmodel/train_epoch_100.pth ##exp/ade20k/pspnet50/model/train_epoch_100.pth  # evaluation model path
   save_folder: exp/ade20k/pspnet50/result/epoch_100/val/ss  # results save folder
   colors_path: data/ade20k/ade20k_colors.txt  # path of dataset colors
   names_path: data/ade20k/ade20k_names.txt  # path of dataset category names
