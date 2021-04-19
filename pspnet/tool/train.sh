@@ -1,13 +1,13 @@
 #!/bin/sh
 
 # uncomment for slurm
-#SBATCH --gres=gpu:k80:2
+#SBATCH --gres=gpu:4
 #SBATCH --time=24:00:00
 #SBATCH --job-name='pspnet'
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=4
-#SBATCH --mem=50GB
+#SBATCH --nodes=2
+#SBATCH --ntasks-per-node=8
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=100GB
 
 module purge
 
@@ -15,10 +15,9 @@ module purge
 NETID=mw3706
 cd /scratch/${NETID}/dim
 
-singularity exec --nv \
-	    --overlay /scratch/mw3706/dim/overlay-5GB-200K.ext3:ro \
-	    /scratch/work/public/singularity/cuda11.1-cudnn8-devel-ubuntu18.04.sif \
-	    /bin/bash -c "
+singularity exec --nv --overlay /home/mw3706/pytorch-1.1.0.ext3:ro \
+        /scratch/work/public/singularity/cuda9.0-cudnn7-devel-ubuntu16.04-20201127.sif \
+        /bin/bash -c "
 cd Deep_Image_Matting_Reproduce/pspnet
 export PYTHONPATH=./
 eval "$(conda shell.bash hook)"
