@@ -6,7 +6,7 @@
 #SBATCH --job-name='pspnet'
 #SBATCH --nodes=4
 #SBATCH --ntasks-per-node=8
-#SBATCH --cpus-per-task=32
+#SBATCH --cpus-per-task=16
 #SBATCH --mem=100GB
 
 module purge
