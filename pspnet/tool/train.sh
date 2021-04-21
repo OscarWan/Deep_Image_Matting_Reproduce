@@ -13,14 +13,12 @@ module purge
 
 # Replace with your NetID
 NETID=mw3706
-cd /scratch/${NETID}/dim
+cd /scratch/${NETID}/dim/Deep_Image_Matting_Reproduce/pspnet
 
 singularity exec --nv --overlay /home/mw3706/pytorch-1.1.0.ext3:ro \
         /scratch/work/public/singularity/cuda9.0-cudnn7-devel-ubuntu16.04-20201127.sif \
         /bin/bash -c "
-cd Deep_Image_Matting_Reproduce/pspnet
 source /ext3/env.sh  # pytorch 1.4.0 env
-PYTHON=python
 
 exp_dir=exp/portrait/psp101
 model_dir=${exp_dir}/model
@@ -35,11 +33,11 @@ cp tool/test.py ${exp_dir}
 cp ${config} ${exp_dir}
 
 export PYTHONPATH=./
-$PYTHON -u ${exp_dir}/train.py \
+python -u ${exp_dir}/train.py \
   --config=${config} \
   2>&1 | tee ${model_dir}/train-$now.txt
 
-$PYTHON -u ${exp_dir}/test.py \
+python -u ${exp_dir}/test.py \
   --config=${config} \
   2>&1 | tee ${result_dir}/test-$now.txt
 "
