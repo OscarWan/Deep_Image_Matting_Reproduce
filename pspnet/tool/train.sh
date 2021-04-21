@@ -20,24 +20,15 @@ singularity exec --nv --overlay /home/mw3706/pytorch-1.1.0.ext3:ro \
         /bin/bash -c "
 source /ext3/env.sh  # pytorch 1.4.0 env
 
-exp_dir=exp/portrait/psp101
-model_dir=${exp_dir}/model
-result_dir=${exp_dir}/result
-config=config/portrait/portrait_psp101.yaml
-now=$(date +"%Y%m%d_%H%M%S")
-
-cp tool/train.sh ${exp_dir}
-cp tool/train.py ${exp_dir}
-cp tool/test.sh ${exp_dir}
-cp tool/test.py ${exp_dir}
-cp ${config} ${exp_dir}
+cp tool/train.sh tool/train.py tool/test.sh tool/test.py \
+        config/portrait/portrait_psp101.yaml exp/portrait/psp101
 
 export PYTHONPATH=./
-python -u ${exp_dir}/train.py \
-  --config=${config} \
-  2>&1 | tee ${model_dir}/train-$now.txt
+python -u exp/portrait/psp101/train.py \
+  --config=config/portrait/portrait_psp101.yaml \
+  2>&1 | tee exp/portrait/psp101/model/train_log.txt
 
-python -u ${exp_dir}/test.py \
-  --config=${config} \
-  2>&1 | tee ${result_dir}/test-$now.txt
+python -u exp/portrait/psp101/test.py \
+  --config=config/portrait/portrait_psp101.yaml \
+  2>&1 | tee exp/portrait/psp101/result/test_log.txt
 "
