@@ -27,6 +27,7 @@ test_ind = ind_list[int(num*0.8):]
 
 with open('list/training.txt', 'w') as file:
     for i in range(len(train_ind)):
+        print(image_list[i])
         file.write(image_list[i] + ' ' + matting_list[i] + '\n')
 
 with open('list/validation.txt', 'w') as file:
