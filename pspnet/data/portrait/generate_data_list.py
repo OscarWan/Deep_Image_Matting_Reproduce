@@ -19,7 +19,16 @@ for folder in first_level:
             continue
         matting_list.append(os.listdir(os.path.join("matting", os.path.join(folder, subfolder))))
 
-if len(image_list) == len(matting_list):
-    print('length same')
-else:
-    print('not the same')
+num = len(matting_list)
+ind_list = np.arange(num)
+np.random.shuffle(ind_list)
+train_ind = ind_list[:int(num*0.8)]
+test_ind = ind_list[int(num*0.8):]
+
+with open('list/training.txt', 'w') as file:
+    for i in range(len(train_ind)):
+        file.write(image_list[i] + ' ' + matting_list[i] + '\n')
+
+with open('list/validation.txt', 'w') as file:
+    for i in range(len(test_ind)):
+        file.write(image_list[i] + ' ' + matting_list[i] + '\n')
