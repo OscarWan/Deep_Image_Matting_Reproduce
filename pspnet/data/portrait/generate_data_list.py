@@ -33,7 +33,7 @@ boo = True
 with open('list/training.txt', 'w') as file:
     for i in range(len(train_ind)):
         if boo:
-            print(image: image_list[i])
+            print('image: ', image_list[i])
             boo = False
         file.write(image_list[i] + ' ' + matting_list[i] + '\n')
 
