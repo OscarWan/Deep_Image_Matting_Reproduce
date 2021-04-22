@@ -11,10 +11,14 @@ for folder in first_level:
     for subfolder in second_level:
         image_list.append(os.listdir(os.path.join("clip_img", os.path.join(folder, subfolder))))
 
+boo = True
 first_level = os.listdir("matting")
 for folder in first_level:
     second_level = os.listdir(os.path.join("matting", folder))
     for subfolder in second_level:
+        if boo:
+            print('folder=', folder)
+            print('subfolder=', subfolder)
         matting_list.append(os.listdir(os.path.join("matting", os.path.join(folder, subfolder))))
 
 if len(image_list) == len(matting_list):
