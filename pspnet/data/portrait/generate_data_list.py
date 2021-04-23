@@ -29,12 +29,8 @@ np.random.shuffle(ind_list)
 train_ind = ind_list[:int(num*0.8)]
 test_ind = ind_list[int(num*0.8):]
 
-boo = True
 with open('list/training.txt', 'w') as file:
     for i in range(len(train_ind)):
-        if boo:
-            print('image: ', image_list[i])
-            boo = False
         file.write(image_list[i] + ' ' + matting_list[i] + '\n')
 
 with open('list/validation.txt', 'w') as file:

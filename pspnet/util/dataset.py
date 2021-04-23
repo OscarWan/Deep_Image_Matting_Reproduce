@@ -2,6 +2,8 @@ import os
 import os.path
 import cv2
 import numpy as np
+import sys
+print(sys.path)
 
 from torch.utils.data import Dataset
 
@@ -63,9 +65,19 @@ class SemData(Dataset):
         image = cv2.imread(image_path, cv2.IMREAD_COLOR)  # BGR 3 channel ndarray wiht shape H * W * 3
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)  # convert cv2 read image from BGR order to RGB order
         image = np.float32(image)
-        label = cv2.imread(label_path, cv2.IMREAD_GRAYSCALE)  # GRAY 1 channel ndarray with shape H * W
+        in_image = cv2.imread(label_path, cv2.IMREAD_UNCHANGED)
+        label = in_image[:,:,3]  # GRAY 1 channel ndarray with shape H * W
         if image.shape[0] != label.shape[0] or image.shape[1] != label.shape[1]:
             raise (RuntimeError("Image & label shape mismatch: " + image_path + " " + label_path + "\n"))
         if self.transform is not None:
             image, label = self.transform(image, label)
+        print('From dataset.py: The label is: ', label[0][:5], '#####\n')
+        for row in label:
+            for value in row:
+                if value <= 0.2:
+                    value = 1
+                elif value >= 0.8:
+                    value = 2
+                elif 0.2 < value < 0.8:
+                    value = 0
         return image, label
