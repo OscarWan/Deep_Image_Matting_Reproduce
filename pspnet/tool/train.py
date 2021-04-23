@@ -84,8 +84,6 @@ def main():
     check(args)
     os.environ["CUDA_VISIBLE_DEVICES"] = ','.join(str(x) for x in args.train_gpu)
     print("######")
-    if CUDA_VISIBLE_DEVICES:
-        print(CUDA_VISIBLE_DEVICES)
     print(os.environ["CUDA_VISIBLE_DEVICES"])
     print("######")
     if args.manual_seed is not None:
