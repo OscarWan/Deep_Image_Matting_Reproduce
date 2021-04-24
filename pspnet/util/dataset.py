@@ -2,8 +2,6 @@ import os
 import os.path
 import cv2
 import numpy as np
-import sys
-print(sys.path)
 
 from torch.utils.data import Dataset
 
