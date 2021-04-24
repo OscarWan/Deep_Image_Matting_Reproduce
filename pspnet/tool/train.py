@@ -337,9 +337,10 @@ def train(train_loader, model, optimizer, epoch):
     accuracy_class = intersection_meter.sum / (target_meter.sum + 1e-10)
     mIoU = np.mean(iou_class)
     mAcc = np.mean(accuracy_class)
-    print('Intersection meter sum is:', intersection_meter.sum)
-    print('Target meter sum is:', target_meter.sum)
-    allAcc = sum(intersection_meter.sum) / (sum(target_meter.sum) + 1e-10)
+    if intersection_meter.sum == 0 or target_meter.sum == 0:
+        allAcc = 0
+    else:
+        allAcc = sum(intersection_meter.sum) / (sum(target_meter.sum) + 1e-10)
     if main_process():
         logger.info('Train result at epoch [{}/{}]: mIoU/mAcc/allAcc {:.4f}/{:.4f}/{:.4f}.'.format(epoch+1, args.epochs, mIoU, mAcc, allAcc))
     return main_loss_meter.avg, mIoU, mAcc, allAcc
