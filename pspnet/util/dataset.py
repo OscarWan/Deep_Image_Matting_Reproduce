@@ -69,12 +69,12 @@ class SemData(Dataset):
             raise (RuntimeError("Image & label shape mismatch: " + image_path + " " + label_path + "\n"))
         if self.transform is not None:
             image, label = self.transform(image, label)
-        for row in label:
-            for value in row:
-                if value <= 0.2:
-                    value = 1
-                elif value >= 0.8:
-                    value = 2
-                elif 0.2 < value < 0.8:
-                    value = 0
+        # for row in label:
+        #     for value in row:
+        #         if value <= 0.2:
+        #             value = 1
+        #         elif value >= 0.8:
+        #             value = 2
+        #         elif 0.2 < value < 0.8:
+        #             value = 0
         return image, label
