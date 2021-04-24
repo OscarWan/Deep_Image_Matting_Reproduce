@@ -11,7 +11,7 @@ for folder in first_level:
     for subfolder in second_level:
         temp_list = os.listdir(os.path.join("clip_img", os.path.join(folder, subfolder)))
         for image in temp_list:
-            image_list.append(image)
+            image_list.append("clip_img/"+folder+'/'+subfolder+'/'+image)
 
 first_level = os.listdir("matting")
 for folder in first_level:
@@ -21,7 +21,7 @@ for folder in first_level:
             continue
         temp_list = os.listdir(os.path.join("matting", os.path.join(folder, subfolder)))
         for matting in temp_list:
-            matting_list.append(matting)
+            matting_list.append("matting/"+folder+'/'+subfolder+'/'+matting)
 
 num = len(matting_list)
 ind_list = np.arange(num)
