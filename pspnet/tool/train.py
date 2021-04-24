@@ -83,9 +83,6 @@ def main():
     args = get_parser()
     check(args)
     os.environ["CUDA_VISIBLE_DEVICES"] = ','.join(str(x) for x in args.train_gpu)
-    print("######")
-    print(os.environ["CUDA_VISIBLE_DEVICES"])
-    print("######")
     if args.manual_seed is not None:
         random.seed(args.manual_seed)
         np.random.seed(args.manual_seed)
