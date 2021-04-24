@@ -61,7 +61,7 @@ class SemData(Dataset):
     def __getitem__(self, index):
         image_path, label_path = self.data_list[index]
         image = cv2.imread(image_path, cv2.IMREAD_COLOR)  # BGR 3 channel ndarray wiht shape H * W * 3
-        print('image is:',image)
+        print('image path:',image_path)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)  # convert cv2 read image from BGR order to RGB order
         print('after converting image is:',image)
         image = np.float32(image)
