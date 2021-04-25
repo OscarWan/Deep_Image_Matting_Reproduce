@@ -27,8 +27,9 @@ export PYTHONPATH=./
 python -u exp/portrait/pspnet101/train.py \
   --config=config/portrait/portrait_psp101.yaml \
   2>&1 | tee exp/portrait/pspnet101/model/train_log.txt
-
-python -u exp/portrait/pspnet101/test.py \
-  --config=config/portrait/portrait_psp101.yaml \
-  2>&1 | tee exp/portrait/pspnet101/result/test_log.txt
 "
+
+# python -u exp/portrait/pspnet101/test.py \
+#   --config=config/portrait/portrait_psp101.yaml \
+#   2>&1 | tee exp/portrait/pspnet101/result/test_log.txt
+# "

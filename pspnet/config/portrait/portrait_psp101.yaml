@@ -28,7 +28,7 @@ TRAIN:
   momentum: 0.9
   weight_decay: 0.0001
   manual_seed:
-  print_freq: 10
+  print_freq: 100
   save_freq: 1
   save_path: /scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/exp/portrait/pspnet101/model
   weight:  # path to initial weight (default: none)
