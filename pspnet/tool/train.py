@@ -200,6 +200,7 @@ def main_worker(gpu, ngpus_per_node, argss):
         transform.ToTensor(),
         transform.Normalize(mean=mean, std=std)])
     train_data = dataset.SemData(split='train', data_root=args.data_root, data_list=args.train_list, transform=train_transform)
+    print("train data is:", train_data)
     if args.distributed:
         train_sampler = torch.utils.data.distributed.DistributedSampler(train_data)
     else:
@@ -266,7 +267,6 @@ def train(train_loader, model, optimizer, epoch):
             target = F.interpolate(target.unsqueeze(1).float(), size=(h, w), mode='bilinear', align_corners=True).squeeze(1).long()
         input = input.cuda(non_blocking=True)
         target = target.cuda(non_blocking=True)
-        print("The input of the model is:", input)
         output, main_loss, aux_loss = model(input, target)
         if not args.multiprocessing_distributed:
             main_loss, aux_loss = torch.mean(main_loss), torch.mean(aux_loss)
