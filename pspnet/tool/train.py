@@ -200,7 +200,7 @@ def main_worker(gpu, ngpus_per_node, argss):
         transform.ToTensor(),
         transform.Normalize(mean=mean, std=std)])
     train_data = dataset.SemData(split='train', data_root=args.data_root, data_list=args.train_list, transform=train_transform)
-    print("train data is:", train_data)
+    print("train data is:", train_data.data_list)
     if args.distributed:
         train_sampler = torch.utils.data.distributed.DistributedSampler(train_data)
     else:
