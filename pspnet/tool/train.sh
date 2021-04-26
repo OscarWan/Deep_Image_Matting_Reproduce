@@ -25,11 +25,11 @@ source /ext3/env.sh  # pytorch 1.4.0 env
 
 export PYTHONPATH=./
 python -u exp/voc2012/pspnet101/train.py \
-  --config=config/voc2012/portrait_psp101.yaml \
+  --config=config/voc2012/voc2012_psp101.yaml \
   2>&1 | tee exp/voc2012/pspnet101/model/train_log.txt
 
 
 python -u exp/voc2012/pspnet101/test.py \
-  --config=config/voc2012/portrait_psp101.yaml \
+  --config=config/voc2012/voc2012_psp101.yaml \
   2>&1 | tee exp/voc2012/pspnet101/result/test_log.txt
 "
