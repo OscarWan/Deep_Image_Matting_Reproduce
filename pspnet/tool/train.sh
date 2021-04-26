@@ -16,7 +16,7 @@ NETID=mw3706
 cd /scratch/${NETID}/dim/Deep_Image_Matting_Reproduce/pspnet
 
 cp tool/train.sh tool/train.py tool/test.sh tool/test.py \
-        config/voc2012/voc2012_psp101.yaml exp/voc2012/pspnet101
+        config/voc2012/voc2012_pspnet101.yaml exp/voc2012/pspnet101
 
 singularity exec --nv --overlay /home/mw3706/pytorch-1.1.0.ext3:ro \
         /scratch/work/public/singularity/cuda9.0-cudnn7-devel-ubuntu16.04-20201127.sif \
