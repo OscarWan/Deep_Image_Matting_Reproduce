@@ -66,7 +66,10 @@ class SemData(Dataset):
         # in_image = cv2.imread(label_path, cv2.IMREAD_UNCHANGED)
         # label = in_image[:,:,3]  # GRAY 1 channel ndarray with shape H * W
         label = cv2.imread(label_path, cv2.IMREAD_GRAYSCALE)
-        print(type(image), image.size)
+        print("image shape 0 is:", image.shape[0])
+        print("image shape 1 is:", image.shape[1])
+        print("label shape 0 is:", label.shape[0])
+        print("label shape 1 is:", label.shape[1])
         if image.shape[0] != label.shape[0] or image.shape[1] != label.shape[1]:
             raise (RuntimeError("Image & label shape mismatch: " + image_path + " " + label_path + "\n"))
         if self.transform is not None:
