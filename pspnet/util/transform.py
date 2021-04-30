@@ -237,3 +237,23 @@ class BGR2RGB(object):
     def __call__(self, image, label):
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         return image, label
+
+class LabelRescale(object):
+    # Converts label from grey image to matting label (bg=1, fg=2, al=0)
+    def __call__(self, image, label):
+        range_label = np.max(label)-np.min(label)
+        label = label / range_label
+        shape = label.shape
+        new_label = np.zeros(shape)
+
+        for i in range(shape[0]):
+            for j in range(shape[1]):
+                for k in range(shape[2]):
+                    if label[i][j][k] < 0.2:
+                        new_label[i][j][k] = 1
+                    elif label[i][j][k] > 0.8:
+                        new_label[i][j][k] = 2
+                    elif 0.2 <= label[i][j][k] <= 0.8:
+                        new_label[i][j][k] = 0
+        label = new_label
+        return image, label

@@ -63,28 +63,11 @@ class SemData(Dataset):
         image = cv2.imread(image_path, cv2.IMREAD_COLOR)  # BGR 3 channel ndarray wiht shape H * W * 3
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)  # convert cv2 read image from BGR order to RGB order
         image = np.float32(image)
-        # in_image = cv2.imread(label_path, cv2.IMREAD_UNCHANGED)
-        # label = in_image[:,:,3]  # GRAY 1 channel ndarray with shape H * W
-        label = cv2.imread(label_path, cv2.IMREAD_GRAYSCALE)
-        print("image shape 0 is:", image.shape[0])
-        print("image shape 1 is:", image.shape[1])
-        print("label shape 0 is:", label.shape[0])
-        print("label shape 1 is:", label.shape[1])
+        in_image = cv2.imread(label_path, cv2.IMREAD_UNCHANGED)
+        label = in_image[:,:,3]  # GRAY 1 channel ndarray with shape H * W
+        # label = cv2.imread(label_path, cv2.IMREAD_GRAYSCALE)
         if image.shape[0] != label.shape[0] or image.shape[1] != label.shape[1]:
             raise (RuntimeError("Image & label shape mismatch: " + image_path + " " + label_path + "\n"))
         if self.transform is not None:
             image, label = self.transform(image, label)
-        # for row in label:
-        #     for value in row:
-        #         if value <= 0.2:
-        #             value = 1
-        #         elif value >= 0.8:
-        #             value = 2
-        #         elif 0.2 < value < 0.8:
-        #             value = 0
-        try:
-            cv2.imwrite('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/exp/voc2012/voctestimg.png',image)
-            cv2.imwrite('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/exp/voc2012/voctestlab.png',label)
-            return image, label
-        except:
-            return image, label
+        return image, label
