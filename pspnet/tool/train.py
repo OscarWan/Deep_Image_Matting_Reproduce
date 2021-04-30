@@ -198,7 +198,7 @@ def main_worker(gpu, ngpus_per_node, argss):
         transform.RandomHorizontalFlip(),
         transform.Crop([args.train_h, args.train_w], crop_type='rand', padding=mean, ignore_label=args.ignore_label),
         transform.ToTensor(),
-        transform.Normalize(mean=mean, std=std)])
+        transform.Normalize(mean=mean, std=std)]),
         transform.LabelRescale()
     train_data = dataset.SemData(split='train', data_root=args.data_root, data_list=args.train_list, transform=train_transform)
 
@@ -214,7 +214,7 @@ def main_worker(gpu, ngpus_per_node, argss):
         val_transform = transform.Compose([
             transform.Crop([args.train_h, args.train_w], crop_type='center', padding=mean, ignore_label=args.ignore_label),
             transform.ToTensor(),
-            transform.Normalize(mean=mean, std=std)])
+            transform.Normalize(mean=mean, std=std)]),
             transform.LabelRescale()
         val_data = dataset.SemData(split='val', data_root=args.data_root, data_list=args.val_list, transform=val_transform)
         if args.distributed:
