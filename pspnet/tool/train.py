@@ -272,8 +272,8 @@ def train(train_loader, model, optimizer, epoch):
             target = F.interpolate(target.unsqueeze(1).float(), size=(h, w), mode='bilinear', align_corners=True).squeeze(1).long()
         input = input.cuda(non_blocking=True)
         target = target.cuda(non_blocking=True)
-        print("The range of target of the model is:", min(target), max(target))
-        print("The range of input of the model is:", min(input), max(input))
+        print("The range of target of the model is:", torch.min(target), torch.max(target))
+        print("The range of input of the model is:", torch.min(input), torch.max(input))
         output, main_loss, aux_loss = model(input, target)
         if not args.multiprocessing_distributed:
             main_loss, aux_loss = torch.mean(main_loss), torch.mean(aux_loss)
