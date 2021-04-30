@@ -242,21 +242,19 @@ class LabelRescale(object):
     # Converts label from grey image to matting label (bg=1, fg=2, al=0)
     def __call__(self, image, label):
         label = label.numpy()
-        range_label = np.max(label) - np.min(label)
-        label = label / range_label
         shape = label.shape
-        print(shape)
+        floor = 255 * 0.2
+        cell = 255 * 0.8
         new_label = np.zeros(shape)
 
         for i in range(shape[0]):
             for j in range(shape[1]):
-                for k in range(shape[2]):
-                    if label[i][j][k] < 0.2:
-                        new_label[i][j][k] = 1
-                    elif label[i][j][k] > 0.8:
-                        new_label[i][j][k] = 2
-                    elif 0.2 <= label[i][j][k] <= 0.8:
-                        new_label[i][j][k] = 0
+                if label[i][j] < floor:
+                    new_label[i][j] = 1
+                elif label[i][j] > cell:
+                    new_label[i][j] = 2
+                elif floor <= label[i][j] <= cell:
+                    new_label[i][j] = 0
         label = new_label
         label = torch.from_numpy(label)
         if not isinstance(label, torch.LongTensor):
