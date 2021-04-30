@@ -245,6 +245,7 @@ class LabelRescale(object):
         range_label = np.max(label) - np.min(label)
         label = label / range_label
         shape = label.shape
+        print(shape)
         new_label = np.zeros(shape)
 
         for i in range(shape[0]):
