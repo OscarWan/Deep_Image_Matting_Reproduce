@@ -241,7 +241,7 @@ class BGR2RGB(object):
 class LabelRescale(object):
     # Converts label from grey image to matting label (bg=1, fg=2, al=0)
     def __call__(self, image, label):
-        range_label = np.max(label)-np.min(label)
+        range_label = np.amax(label) - np.amin(label)
         label = label / range_label
         shape = label.shape
         new_label = np.zeros(shape)
