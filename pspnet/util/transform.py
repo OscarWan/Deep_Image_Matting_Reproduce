@@ -241,8 +241,8 @@ class BGR2RGB(object):
 class LabelRescale(object):
     # Converts label from grey image to matting label (bg=1, fg=2, al=0)
     def __call__(self, image, label):
-        print(type(label))
-        range_label = np.amax(label) - np.amin(label)
+        label = label.numpy()
+        range_label = np.max(label) - np.min(label)
         label = label / range_label
         shape = label.shape
         new_label = np.zeros(shape)
@@ -257,4 +257,7 @@ class LabelRescale(object):
                     elif 0.2 <= label[i][j][k] <= 0.8:
                         new_label[i][j][k] = 0
         label = new_label
+        label = torch.from_numpy(label)
+        if not isinstance(label, torch.LongTensor):
+            label = label.long()
         return image, label
