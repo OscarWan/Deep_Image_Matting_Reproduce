@@ -255,7 +255,7 @@ class LabelRescale(object):
                     new_label[i][j] = 2
                 elif floor <= label[i][j] <= cell:
                     new_label[i][j] = 0
-        label = new_label
+        label = new_label.astype(np.uint8)
         label = torch.from_numpy(label)
         if not isinstance(label, torch.LongTensor):
             label = label.long()
