@@ -37,7 +37,7 @@ def poly_learning_rate(base_lr, curr_iter, max_iter, power=0.9):
     return lr
 
 
-def intersectionAndUnion(output, target, K, ignore_index=255):
+def intersectionAndUnion(output, target, K, ignore_index=0):
     # 'K' classes, output and target sizes are N or N * L or N * H * W, each value in range 0 to K - 1.
     assert (output.ndim in [1, 2, 3])
     assert output.shape == target.shape
@@ -52,7 +52,7 @@ def intersectionAndUnion(output, target, K, ignore_index=255):
     return area_intersection, area_union, area_target
 
 
-def intersectionAndUnionGPU(output, target, K, ignore_index=255):
+def intersectionAndUnionGPU(output, target, K, ignore_index=0):
     # 'K' classes, output and target sizes are N or N * L or N * H * W, each value in range 0 to K - 1.
     assert (output.dim() in [1, 2, 3])
     assert output.shape == target.shape

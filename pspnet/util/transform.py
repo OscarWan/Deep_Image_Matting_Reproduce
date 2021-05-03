@@ -111,7 +111,7 @@ class Crop(object):
         size (sequence or int): Desired output size of the crop. If size is an
         int instead of sequence like (h, w), a square crop (size, size) is made.
     """
-    def __init__(self, size, crop_type='center', padding=None, ignore_label=255):
+    def __init__(self, size, crop_type='center', padding=None, ignore_label=0):
         if isinstance(size, int):
             self.crop_h = size
             self.crop_w = size
@@ -167,7 +167,7 @@ class Crop(object):
 
 class RandRotate(object):
     # Randomly rotate image & label with rotate factor in [rotate_min, rotate_max]
-    def __init__(self, rotate, padding, ignore_label=255, p=0.5):
+    def __init__(self, rotate, padding, ignore_label=0, p=0.5):
         assert (isinstance(rotate, collections.Iterable) and len(rotate) == 2)
         if isinstance(rotate[0], numbers.Number) and isinstance(rotate[1], numbers.Number) and rotate[0] < rotate[1]:
             self.rotate = rotate
