@@ -2,7 +2,7 @@ DATA:
   data_root: /scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait
   train_list: /scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/list/training.txt
   val_list: /scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/list/validation.txt
-  classes: 2
+  classes: 3
 
 TRAIN:
   arch: psp
@@ -22,7 +22,7 @@ TRAIN:
   batch_size: 16  # batch size for training
   batch_size_val: 8  # batch size for validation during training, memory and speed tradeoff
   base_lr: 0.01
-  epochs: 50
+  epochs: 2 # 50
   start_epoch: 0
   power: 0.9
   momentum: 0.9
