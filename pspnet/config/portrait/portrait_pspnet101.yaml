@@ -22,8 +22,8 @@ TRAIN:
   batch_size: 16  # batch size for training
   batch_size_val: 8  # batch size for validation during training, memory and speed tradeoff
   base_lr: 0.01
-  epochs: 50
-  start_epoch: 0
+  epochs: 101
+  start_epoch: 49
   power: 0.9
   momentum: 0.9
   weight_decay: 0.0001
