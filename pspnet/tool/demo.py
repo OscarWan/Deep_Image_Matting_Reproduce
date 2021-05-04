@@ -185,12 +185,12 @@ def test(model, image_path, classes, mean, std, base_size, crop_h, crop_w, scale
     gray_path = os.path.join('./figure/demo/', image_name + '_gray.png')
     color_path = os.path.join('./figure/demo/', image_name + '_color.png')
 
-    pred_path = os.path.join('./figure/demo/', image_name + '_pred.png')
-    try:
-        cv2.imwrite(pred_path, prediction)
-    except:
-        prediction.save(pred_path)
-        
+    # pred_path = os.path.join('./figure/demo/', image_name + '_pred.png')
+    # try:
+    #     cv2.imwrite(pred_path, prediction)
+    # except:
+    #     prediction.save(pred_path)
+
     cv2.imwrite(gray_path, gray)
     color.save(color_path)
     logger.info("=> Prediction saved in {}".format(color_path))
