@@ -248,7 +248,7 @@ def main_worker(gpu, ngpus_per_node, argss):
                 writer.add_scalar('mIoU_val', mIoU_val, epoch_log)
                 writer.add_scalar('mAcc_val', mAcc_val, epoch_log)
                 writer.add_scalar('allAcc_val', allAcc_val, epoch_log)
-    writer.close()
+    
 
 
 def train(train_loader, model, optimizer, epoch):
