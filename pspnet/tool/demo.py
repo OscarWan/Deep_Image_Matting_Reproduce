@@ -186,6 +186,9 @@ def test(model, image_path, classes, mean, std, base_size, crop_h, crop_w, scale
     color_path = os.path.join('./figure/demo/', image_name + '_color.png')
 
     pred_path = os.path.join('./figure/demo/', image_name + '_pred.png')
+    print(prediction)
+    print(np.unique(prediction))
+    print(prediction.shape)
     try:
         cv2.imwrite(pred_path, prediction)
     except:
