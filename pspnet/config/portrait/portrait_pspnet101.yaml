@@ -52,7 +52,7 @@ TEST:
   index_start: 0  # evaluation start index in list
   index_step: 0  # evaluation step index in list, 0 means to end
   test_gpu: [0]
-  model_path: /scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/exp/portrait/pspnet101/model/train_epoch_50.pth  # evaluation model path
-  save_folder: /scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/exp/portrait/pspnet101/result/epoch_50/val/ss  # results save folder
+  model_path: /scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/exp/portrait/pspnet101/model/train_epoch_49.pth  # evaluation model path
+  save_folder: /scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/exp/portrait/pspnet101/result/epoch_49/val/ss  # results save folder
   colors_path: /scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/portrait_colors.txt  # path of dataset colors
   names_path: /scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/portrait_names.txt  # path of dataset category names
