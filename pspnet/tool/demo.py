@@ -92,7 +92,7 @@ def main():
                        normalization_factor=args.normalization_factor, psa_softmax=args.psa_softmax, pretrained=False)
     logger.info(model)
     model = torch.nn.DataParallel(model).cuda()
-    cudnn.benchmark = True
+    cudnn.benchmark = False #True
     if os.path.isfile(args.model_path):
         logger.info("=> loading checkpoint '{}'".format(args.model_path))
         checkpoint = torch.load(args.model_path)
