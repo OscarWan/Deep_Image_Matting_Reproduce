@@ -250,12 +250,12 @@ class LabelRescale(object):
         for i in range(shape[0]):
             for j in range(shape[1]):
                 if label[i][j] < floor:
-                    new_label[i][j] = 1
-                elif label[i][j] > cell:
-                    new_label[i][j] = 2
-                elif floor <= label[i][j] <= cell:
                     new_label[i][j] = 0
-        label = new_label.astype(np.uint8)
+                elif label[i][j] > cell:
+                    new_label[i][j] = 1
+                elif floor <= label[i][j] <= cell:
+                    new_label[i][j] = -1
+        label = new_label.astype(np.int16)
         label = torch.from_numpy(label)
         if not isinstance(label, torch.LongTensor):
             label = label.long()

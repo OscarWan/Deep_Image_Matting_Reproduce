@@ -2,7 +2,7 @@ DATA:
   data_root: /scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait
   train_list: /scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/list/training.txt
   val_list: /scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/list/validation.txt
-  classes: 3
+  classes: 2
 
 TRAIN:
   arch: psp
@@ -15,9 +15,9 @@ TRAIN:
   rotate_min: -10  # minimum random rotate
   rotate_max: 10  # maximum random rotate
   zoom_factor: 8  # zoom factor for final prediction during training, be in [1, 2, 4, 8]
-  ignore_label: 0
+  ignore_label: -1
   aux_weight: 0.4
-  train_gpu: [0, 1, 2, 3] #, 4, 5, 6, 7]
+  train_gpu: [0] #, 1, 2, 3, 4, 5, 6, 7]
   workers: 16  # data loader workers
   batch_size: 16  # batch size for training
   batch_size_val: 8  # batch size for validation during training, memory and speed tradeoff
