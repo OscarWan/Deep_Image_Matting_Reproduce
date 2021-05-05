@@ -98,12 +98,15 @@ def gen_trimap(alpha):
     trimap.fill(128)
     trimap[eroded >= 255] = 255
     trimap[dilated <= 0] = 0
+    print("in gen_trimap the trimap shape is:", trimap.shape)
+    print("gen_trimap trimap unique:", np.unique(trimap))
     return trimap
 
 
 # Randomly crop (image, trimap) pairs centered on pixels in the unknown regions.
 def random_choice(trimap, crop_size=(320, 320)):
     crop_height, crop_width = crop_size
+    print('in random_choice the trimap shape is:', trimap.shape)
     y_indices, x_indices = np.where(trimap == unknown_code)
     num_unknowns = len(y_indices)
     x, y = 0, 0
@@ -139,6 +142,7 @@ class DIMDataset(Dataset):
         crop_size = random.choice(different_sizes)
 
         trimap = gen_trimap(alpha)
+        print("In line 145 the shape of trimap is:", trimap.shape)
         x, y = random_choice(trimap, crop_size)
         img = safe_crop(img, x, y, crop_size)
         alpha = safe_crop(alpha, x, y, crop_size)
@@ -161,7 +165,11 @@ class DIMDataset(Dataset):
         y = np.empty((2, im_size, im_size), dtype=np.float32)
         y[0, :, :] = alpha / 255.
         mask = np.equal(trimap, 128).astype(np.float32)
+        print(mask.shape)
+        print(np.unique(mask))
+        print(mask)
         y[1, :, :] = mask
+        print("y is here:", np.unique(y))
 
         return x, y
 
