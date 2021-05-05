@@ -19,7 +19,6 @@ singularity exec --nv \
 	    /bin/bash -c "
 source /ext3/env.sh
 cd Deep_Image_Matting_Reproduce
-python data_gen.py
+python train.py
 exit
 "
-# train.py
