@@ -22,8 +22,8 @@ TRAIN:
   batch_size: 16  # batch size for training
   batch_size_val: 8  # batch size for validation during training, memory and speed tradeoff
   base_lr: 0.01
-  epochs: 101
-  start_epoch: 49
+  epochs: 51
+  start_epoch: 0
   power: 0.9
   momentum: 0.9
   weight_decay: 0.0001
@@ -33,7 +33,7 @@ TRAIN:
   save_path: /scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/exp/portrait/pspnet101/model
   weight:  # path to initial weight (default: none)
   resume:  # path to latest checkpoint (default: none)
-  evaluate: False  # evaluate on validation set, extra gpu memory needed and small batch_size_val is recommend
+  evaluate: True  # evaluate on validation set, extra gpu memory needed and small batch_size_val is recommend
 Distributed:
   dist_url: tcp://127.0.0.1:6789
   dist_backend: 'nccl'
