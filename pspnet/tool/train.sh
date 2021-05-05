@@ -2,7 +2,7 @@
 
 # uncomment for slurm
 #SBATCH --gres=gpu:4
-#SBATCH --time=30:00:00
+#SBATCH --time=48:00:00
 #SBATCH --job-name='pspnet'
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
