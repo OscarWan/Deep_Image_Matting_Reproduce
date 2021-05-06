@@ -22,8 +22,8 @@ TRAIN:
   batch_size: 16  # batch size for training
   batch_size_val: 8  # batch size for validation during training, memory and speed tradeoff
   base_lr: 0.01
-  epochs: 51
-  start_epoch: 0
+  epochs: 101
+  start_epoch: 50
   power: 0.9
   momentum: 0.9
   weight_decay: 0.0001
@@ -32,7 +32,7 @@ TRAIN:
   save_freq: 1
   save_path: /scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/exp/portrait/pspnet101/model
   weight:  # path to initial weight (default: none)
-  resume:  # path to latest checkpoint (default: none)
+  resume:  /scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/exp/portrait/pspnet101/model/BEST_MODEL.pth # path to latest checkpoint (default: none)
   evaluate: True  # evaluate on validation set, extra gpu memory needed and small batch_size_val is recommend
 Distributed:
   dist_url: tcp://127.0.0.1:6789
@@ -52,7 +52,7 @@ TEST:
   index_start: 0  # evaluation start index in list
   index_step: 0  # evaluation step index in list, 0 means to end
   test_gpu: [0]
-  model_path: /scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/exp/portrait/pspnet101/model/train_epoch_50.pth  # evaluation model path
+  model_path: /scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/exp/portrait/pspnet101/model/BEST_MODEL.pth  # evaluation model path
   save_folder: /scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/exp/portrait/pspnet101/result/epoch_50/val/ss  # results save folder
   colors_path: /scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/portrait_colors.txt  # path of dataset colors
   names_path: /scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/portrait_names.txt  # path of dataset category names
