@@ -1,6 +1,6 @@
 #!/bin/sh -e
 #SBATCH --time=24:00:00
-#SBATCH --job-name='training'
+#SBATCH --job-name='generating daya'
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=16
@@ -19,6 +19,6 @@ singularity exec --nv \
 	    /bin/bash -c "
 source /ext3/env.sh
 cd Deep_Image_Matting_Reproduce
-python train.py
+python data_gen.py
 exit
 "
