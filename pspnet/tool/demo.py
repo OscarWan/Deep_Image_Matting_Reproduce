@@ -105,8 +105,19 @@ def main():
         for file in image_files:
             image = file.split()
             image = os.path.join('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/', image[0])
-            print(image)
             test(model.eval(), image, args.classes, mean, std, args.base_size, args.test_h, args.test_w, args.scales, colors)
+
+    # if (args.image).split('/')[-1] == 'training.txt'
+        # train_label_list = os.listdir('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/label/train_label')
+        # with open('/scratch/mw3706/dim/training.txt', 'w') as f:
+        #     for label in train_label_list:
+        #         f.write('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/label/train_label/'+label+'\n')
+    # else:
+    val_label_list = os.listdir('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/val_label/')
+    with open('/scratch/mw3706/dim/validation.txt', 'w') as f:
+        for label in val_label_list:
+            f.write('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/label/val_label/'+label+'\n')
+
 
 
 def net_process(model, image, mean, std=None, flip=True):
@@ -189,7 +200,11 @@ def test(model, image_path, classes, mean, std, base_size, crop_h, crop_w, scale
     # color = colorize(gray, colors)
     image_name = image_path.split('/')[-1].split('.')[0]
     # gray_path = os.path.join('./figure/demo/', image_name + '.png')
-    prediction_path = os.path.join('./data/portrait/label/', image_name + '.png')
+    if (args.image).split('/')[-1] == 'training.txt':
+        label_path = './data/portrait/label/train_label/'
+    elif (args.image).split('/')[-1] == 'validation.txt':
+        label_path = './data/portrait/val_label/'
+    prediction_path = os.path.join(label_path, image_name + '.png')
     cv2.imwrite(prediction_path, prediction)
     # color_path = os.path.join('./figure/demo/', image_name + '_color.png')
     # cv2.imwrite(gray_path, gray)
