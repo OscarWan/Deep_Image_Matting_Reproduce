@@ -45,6 +45,12 @@ def get_alpha(name):
     name = fg_files[fg_i]
     filename = os.path.join('../data/mask', name)
     alpha = cv.imread(filename, 0)
+    print("alpha shape:", alpha.shape)
+    try:
+        print("alpha[0][0][0] type", type(alpha[0][0][0]))
+    except:
+        print("alpha[0][0] type", type(alpha[0][0]))
+    print("unique alpha:", np.unique(alpha))
     return alpha
 
 
@@ -76,6 +82,7 @@ def composite4(fg, bg, a, w, h):
 def process(im_name, bg_name):
     im = cv.imread(fg_path + im_name)
     a = cv.imread(a_path + im_name, 0)
+    print("In process, a shape is:", a.shape)
     h, w = im.shape[:2]
     bg = cv.imread(bg_path + bg_name)
     bh, bw = bg.shape[:2]
@@ -133,6 +140,7 @@ class DIMDataset(Dataset):
         im_name = fg_files[fcount]
         bg_name = bg_files[bcount]
         img, alpha, fg, bg = process(im_name, bg_name)
+        print("After process, alpha shape is:", alpha.shape)
 
         # crop size 320:640:480 = 1:1:1
         different_sizes = [(320, 320), (480, 480), (640, 640)]

@@ -100,7 +100,11 @@ def main():
         logger.info("=> loaded checkpoint '{}'".format(args.model_path))
     else:
         raise RuntimeError("=> no checkpoint found at '{}'".format(args.model_path))
-    test(model.eval(), args.image, args.classes, mean, std, args.base_size, args.test_h, args.test_w, args.scales, colors)
+    with open(args.image) as f:
+        image_files = f.read().splitlines()
+        for file in image_files:
+            image = file.split()[0]
+            test(model.eval(), image, args.classes, mean, std, args.base_size, args.test_h, args.test_w, args.scales, colors)
 
 
 def net_process(model, image, mean, std=None, flip=True):
@@ -180,22 +184,12 @@ def test(model, image_path, classes, mean, std, base_size, crop_h, crop_w, scale
     prediction = scale_process(model, image_scale, classes, crop_h, crop_w, h, w, mean, std)
     prediction = np.argmax(prediction, axis=2)
     gray = np.uint8(prediction)
-    color = colorize(gray, colors)
+    # color = colorize(gray, colors)
     image_name = image_path.split('/')[-1].split('.')[0]
-    gray_path = os.path.join('./figure/demo/', image_name + '_gray.png')
-    color_path = os.path.join('./figure/demo/', image_name + '_color.png')
-
-    pred_path = os.path.join('./figure/demo/', image_name + '_pred.png')
-    print(type(prediction), prediction.shape)
-    print(np.unique(prediction))
-    print(prediction)
-    try:
-        cv2.imwrite(pred_path, prediction)
-    except:
-        prediction.save(pred_path)
-
+    gray_path = os.path.join('./figure/demo/', image_name + '.png')
+    # color_path = os.path.join('./figure/demo/', image_name + '_color.png')
     cv2.imwrite(gray_path, gray)
-    color.save(color_path)
+    # color.save(color_path)
     logger.info("=> Prediction saved in {}".format(color_path))
 
 
