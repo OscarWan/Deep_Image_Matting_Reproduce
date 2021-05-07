@@ -185,14 +185,16 @@ def test(model, image_path, classes, mean, std, base_size, crop_h, crop_w, scale
         prediction += scale_process(model, image_scale, classes, crop_h, crop_w, h, w, mean, std)
     prediction = scale_process(model, image_scale, classes, crop_h, crop_w, h, w, mean, std)
     prediction = np.argmax(prediction, axis=2)
-    gray = np.uint8(prediction)
+    # gray = np.uint8(prediction)
     # color = colorize(gray, colors)
     image_name = image_path.split('/')[-1].split('.')[0]
-    gray_path = os.path.join('./figure/demo/', image_name + '.png')
+    # gray_path = os.path.join('./figure/demo/', image_name + '.png')
+    prediction_path = os.path.join('./data/portrait/label/', image_name + '.png')
+    cv2.imwrite(prediction_path, prediction)
     # color_path = os.path.join('./figure/demo/', image_name + '_color.png')
-    cv2.imwrite(gray_path, gray)
+    # cv2.imwrite(gray_path, gray)
     # color.save(color_path)
-    logger.info("=> Prediction saved in {}".format(color_path))
+    logger.info("=> Prediction saved in {}".format(prediction_path))
 
 
 if __name__ == '__main__':
