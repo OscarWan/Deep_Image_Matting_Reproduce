@@ -103,8 +103,8 @@ def main():
     with open(args.image) as f:
         image_files = f.read().splitlines()
         for file in image_files:
-            image = file.split()[0]
-            print(file)
+            image = file.split()
+            image = os.path.join('scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/', image[0]
             test(model.eval(), image, args.classes, mean, std, args.base_size, args.test_h, args.test_w, args.scales, colors)
 
 
