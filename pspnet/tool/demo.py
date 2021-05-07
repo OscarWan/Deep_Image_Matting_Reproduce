@@ -104,6 +104,7 @@ def main():
         image_files = f.read().splitlines()
         for file in image_files:
             image = file.split()[0]
+            print(file)
             test(model.eval(), image, args.classes, mean, std, args.base_size, args.test_h, args.test_w, args.scales, colors)
 
 
