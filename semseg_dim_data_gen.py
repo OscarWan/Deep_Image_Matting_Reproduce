@@ -169,6 +169,9 @@ class DIMDataset(Dataset):
         x, y = random_choice(trimap, crop_size)
         img = safe_crop(img, x, y, crop_size)
         alpha = safe_crop(alpha, x, y, crop_size)
+        label_path = self.labels[i]
+        mask = cv.imread(label_path, cv.IMREAD_UNCHANGED).astype(np.float32)
+        mask = safe_crop(mask, x, y, crop_size)
 
         trimap = gen_trimap(alpha)
 
@@ -188,10 +191,6 @@ class DIMDataset(Dataset):
         y = np.empty((2, im_size, im_size), dtype=np.float32)
         y[0, :, :] = alpha / 255.
         # mask = np.equal(trimap, 128).astype(np.float32)
-        label_path = self.labels[i]
-        mask = np.array(cv.imread(label_path, cv.IMREAD_UNCHANGED).astype(np.float32))
-        mask = safe_crop(mask, x, y, crop_size)
-        # mask = np.equal(trimap, 1).astype(np.float32)
         y[1, :, :] = mask
 
         return x, y
