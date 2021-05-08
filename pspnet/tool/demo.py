@@ -100,7 +100,24 @@ def main():
         logger.info("=> loaded checkpoint '{}'".format(args.model_path))
     else:
         raise RuntimeError("=> no checkpoint found at '{}'".format(args.model_path))
-    test(model.eval(), args.image, args.classes, mean, std, args.base_size, args.test_h, args.test_w, args.scales, colors)
+    with open(args.image) as f:
+        image_files = f.read().splitlines()
+        for file in image_files:
+            image = file.split()
+            image = os.path.join('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/', image[0])
+            test(model.eval(), image, args.classes, mean, std, args.base_size, args.test_h, args.test_w, args.scales, colors)
+
+    if (args.image).split('/')[-1] == 'training.txt'
+        train_label_list = os.listdir('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/label/train_label')
+        with open('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/label/training.txt', 'w') as f:
+            for label in train_label_list:
+                f.write('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/label/train_label/'+label+'\n')
+    else:
+        val_label_list = os.listdir('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/label/val_label/')
+        with open('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/label/validation.txt', 'w') as f:
+            for label in val_label_list:
+                f.write('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/label/val_label/'+label+'\n')
+
 
 
 def net_process(model, image, mean, std=None, flip=True):
@@ -179,19 +196,20 @@ def test(model, image_path, classes, mean, std, base_size, crop_h, crop_w, scale
         prediction += scale_process(model, image_scale, classes, crop_h, crop_w, h, w, mean, std)
     prediction = scale_process(model, image_scale, classes, crop_h, crop_w, h, w, mean, std)
     prediction = np.argmax(prediction, axis=2)
-    logger.info("prediction shape: {}".format(prediction.shape))
-    # class_zero = prediction[:,:,0]
-    # class_one = prediction[:,:,1]
-    # print(np.unique(class_zero))
-    # print(np.unique(class_one))
-    gray = np.uint8(prediction)
-    color = colorize(gray, colors)
+    # gray = np.uint8(prediction)
+    # color = colorize(gray, colors)
     image_name = image_path.split('/')[-1].split('.')[0]
-    gray_path = os.path.join('./figure/demo/', image_name + '_gray.png')
-    color_path = os.path.join('./figure/demo/', image_name + '_color.png')
-    cv2.imwrite(gray_path, gray)
-    color.save(color_path)
-    logger.info("=> Prediction saved in {}".format(color_path))
+    # gray_path = os.path.join('./figure/demo/', image_name + '.png')
+    if (args.image).split('/')[-1] == 'training.txt':
+        label_path = './data/portrait/label/train_label/'
+    elif (args.image).split('/')[-1] == 'validation.txt':
+        label_path = './data/portrait/label/val_label/'
+    prediction_path = os.path.join(label_path, image_name + '.png')
+    cv2.imwrite(prediction_path, prediction)
+    # color_path = os.path.join('./figure/demo/', image_name + '_color.png')
+    # cv2.imwrite(gray_path, gray)
+    # color.save(color_path)
+    logger.info("=> Prediction saved in {}".format(prediction_path))
 
 
 if __name__ == '__main__':
