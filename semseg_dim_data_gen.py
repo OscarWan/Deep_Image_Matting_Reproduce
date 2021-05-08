@@ -159,7 +159,7 @@ class DIMDataset(Dataset):
         # img, alpha, fg, bg = process(im_name, bg_name)
         img = cv.imread(os.path.join('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/', im_name))
         alpha = cv.imread(os.path.join('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/', alpha_name), cv.IMREAD_UNCHANGED)
-        alpha = in_image[:,:,3]
+        alpha = alpha[:,:,3]
 
         # crop size 320:640:480 = 1:1:1
         different_sizes = [(320, 320), (480, 480), (640, 640)]
