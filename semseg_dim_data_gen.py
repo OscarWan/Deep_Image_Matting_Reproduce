@@ -168,6 +168,7 @@ class DIMDataset(Dataset):
         trimap = gen_trimap(alpha)
         x, y = random_choice(trimap, crop_size)
         img = safe_crop(img, x, y, crop_size)
+        print(type(img), type(img[0][0]))
         alpha = safe_crop(alpha, x, y, crop_size)
 
         trimap = gen_trimap(alpha)
@@ -190,6 +191,7 @@ class DIMDataset(Dataset):
         # mask = np.equal(trimap, 128).astype(np.float32)
         label_path = self.labels[i]
         mask = cv.imread(label_path).astype(np.float32)
+        print(type(mask),type(mask[0][0]))
         mask = safe_crop(mask, x, y, crop_size)
         # mask = np.equal(trimap, 1).astype(np.float32)
         y[1, :, :] = mask
