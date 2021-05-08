@@ -191,7 +191,7 @@ class DIMDataset(Dataset):
         # mask = np.equal(trimap, 128).astype(np.float32)
         label_path = self.labels[i]
         mask = cv.imread(label_path, cv.IMREAD_UNCHANGED)
-        mask = safe_crop(mask, x, y, crop_size)
+        # mask = safe_crop(mask, x, y, crop_size)
         # mask = np.equal(trimap, 1).astype(np.float32)
         y[1, :, :] = mask
 
