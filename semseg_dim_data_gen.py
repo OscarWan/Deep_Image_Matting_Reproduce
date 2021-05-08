@@ -18,12 +18,12 @@ from utils import safe_crop
 # Data augmentation and normalization for training
 # Just normalization for validation
 data_transforms = {
-    'train': transforms.Compose([
+    'training': transforms.Compose([
         transforms.ColorJitter(brightness=0.125, contrast=0.125, saturation=0.125),
         transforms.ToTensor(),
         transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
     ]),
-    'valid': transforms.Compose([
+    'validation': transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
     ]),
