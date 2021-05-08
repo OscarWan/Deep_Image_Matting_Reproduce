@@ -8,7 +8,7 @@ import torch
 from torch.utils.data import Dataset
 from torchvision import transforms
 
-from semseg_dim_config import im_size, unknown_code, fg_path, bg_path, a_path, num_valid
+from semseg_dim_configure import im_size, unknown_code, fg_path, bg_path, a_path, num_valid
 from utils import safe_crop
 
 
