@@ -24,8 +24,14 @@ source /ext3/env.sh  # pytorch 1.4.0 env
 export PYTHONPATH=./
 python -u tool/demo.py \
   --config=config/portrait/portrait_pspnet101.yaml \
-  --image=data/portrait/list/training.txt \
+  --image=data/portrait/clip_img/1803151818/clip_00000001/1803151818-00001000.jpg \
   TEST.scales '[1.0]'
+
+# export PYTHONPATH=./
+# python -u tool/demo.py \
+#  --config=config/portrait/portrait_pspnet101.yaml \
+#  --image=data/portrait/list/training.txt \
+#  TEST.scales '[1.0]'
 
 # export PYTHONPATH=./
 # python -u tool/demo.py \
