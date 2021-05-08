@@ -106,17 +106,17 @@ def main():
     #         image = file.split()
     #         image = os.path.join('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/', image[0])
     #         test(model.eval(), image, args.classes, mean, std, args.base_size, args.test_h, args.test_w, args.scales, colors)
-
+    #
     # if (args.image).split('/')[-1] == 'training.txt'
     train_label_list = os.listdir('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/label/train_label')
     with open('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/label/training.txt', 'w') as f:
         for label in train_label_list:
             f.write('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/label/train_label/'+label+'\n')
     # else:
-        # val_label_list = os.listdir('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/label/val_label/')
-        # with open('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/label/validation.txt', 'w') as f:
-        #     for label in val_label_list:
-        #         f.write('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/label/val_label/'+label+'\n')
+    #     val_label_list = os.listdir('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/label/val_label/')
+    #     with open('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/label/validation.txt', 'w') as f:
+    #         for label in val_label_list:
+    #             f.write('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/label/val_label/'+label+'\n')
 
 
 
@@ -203,7 +203,7 @@ def test(model, image_path, classes, mean, std, base_size, crop_h, crop_w, scale
     if (args.image).split('/')[-1] == 'training.txt':
         label_path = './data/portrait/label/train_label/'
     elif (args.image).split('/')[-1] == 'validation.txt':
-        label_path = './data/portrait/val_label/'
+        label_path = './data/portrait/label/val_label/'
     prediction_path = os.path.join(label_path, image_name + '.png')
     cv2.imwrite(prediction_path, prediction)
     # color_path = os.path.join('./figure/demo/', image_name + '_color.png')

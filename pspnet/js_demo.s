@@ -21,15 +21,15 @@ singularity exec --nv --overlay /home/mw3706/pytorch-1.1.0.ext3:ro \
         /bin/bash -c "
 source /ext3/env.sh  # pytorch 1.4.0 env
 
-# export PYTHONPATH=./
-# python -u tool/demo.py \
-#  --config=config/portrait/portrait_pspnet101.yaml \
-#  --image=data/portrait/list/training.txt \
-#  TEST.scales '[1.0]'
-
 export PYTHONPATH=./
 python -u tool/demo.py \
-    --config=config/portrait/portrait_pspnet101.yaml \
-    --image=data/portrait/list/validation.txt \
-    TEST.scales '[1.0]'
+  --config=config/portrait/portrait_pspnet101.yaml \
+  --image=data/portrait/list/training.txt \
+  TEST.scales '[1.0]'
+
+# export PYTHONPATH=./
+# python -u tool/demo.py \
+#    --config=config/portrait/portrait_pspnet101.yaml \
+#    --image=data/portrait/list/validation.txt \
+#    TEST.scales '[1.0]'
 "
