@@ -189,7 +189,7 @@ class DIMDataset(Dataset):
         y[0, :, :] = alpha / 255.
         # mask = np.equal(trimap, 128).astype(np.float32)
         label_path = self.labels[i]
-        mask = cv.imread(label).astype(np.float32)
+        mask = cv.imread(label_path).astype(np.float32)
         # mask = np.equal(trimap, 1).astype(np.float32)
         y[1, :, :] = mask
 
