@@ -158,7 +158,7 @@ class DIMDataset(Dataset):
         alpha_name = name[1]
         # img, alpha, fg, bg = process(im_name, bg_name)
         img = cv.imread(os.path.join('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/', im_name))
-        alpha = cv.imread(os.path.join('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/', alpha_name), cv2.IMREAD_UNCHANGED)
+        alpha = cv.imread(os.path.join('/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/data/portrait/', alpha_name), cv.IMREAD_UNCHANGED)
         alpha = in_image[:,:,3]
 
         # crop size 320:640:480 = 1:1:1
