@@ -179,7 +179,7 @@ def test(model, image_path, classes, mean, std, base_size, crop_h, crop_w, scale
         prediction += scale_process(model, image_scale, classes, crop_h, crop_w, h, w, mean, std)
     prediction = scale_process(model, image_scale, classes, crop_h, crop_w, h, w, mean, std)
     prediction = np.argmax(prediction, axis=2)
-    print(prediction.shape)
+    logger.info("prediction shape: {}".format(prediction.shape))
     # class_zero = prediction[:,:,0]
     # class_one = prediction[:,:,1]
     # print(np.unique(class_zero))
