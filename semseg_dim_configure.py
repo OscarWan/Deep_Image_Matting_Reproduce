@@ -3,7 +3,7 @@ import torch
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')  # sets device for model and PyTorch tensors
 
 im_size = 320
-unknown_code = -1
+unknown_code = 128 # -1
 epsilon = 1e-6
 epsilon_sqr = epsilon ** 2
 
@@ -16,7 +16,7 @@ num_valid = 6886
 num_workers = 1  # for data-loading; right now, only 1 works with h5py
 grad_clip = 5.  # clip gradients at an absolute value of
 print_freq = 100  # print training/validation stats  every __ batches
-checkpoint = '/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/exp/portrait/pspnet101/model/BEST_MODEL.pth'  # path to checkpoint, None if none
+checkpoint = None #'/scratch/mw3706/dim/Deep_Image_Matting_Reproduce/pspnet/exp/portrait/pspnet101/model/BEST_MODEL.pth'  # path to checkpoint, None if none
 
 ##############################################################
 # Set your paths here
