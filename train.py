@@ -61,7 +61,7 @@ def train_net(args):
             break
 
         if args.optimizer == 'sgd' and epochs_since_improvement > 0 and epochs_since_improvement % 2 == 0:
-            checkpoint = 'BEST_checkpoint.tar'
+            checkpoint = 'initial_BEST_checkpoint.tar'
             checkpoint = torch.load(checkpoint)
             model = checkpoint['model']
             optimizer = checkpoint['optimizer']
