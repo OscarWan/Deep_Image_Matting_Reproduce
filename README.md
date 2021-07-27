@@ -1,5 +1,5 @@
 # Introduction
-This is my CS capstone at undergraduate level about Deep Image Matting (DIM). Basically, the current plan includes:
+This is my CS capstone at undergraduate level, combining Deep Image Matting (DIM) and Semantic Segmentation. The project includes reproducing classical methods in two areas, and then the attempt to combine two together.
 
 1. Reproduce the algorithm deep image matting by this [paper](https://arxiv.org/abs/1703.03872)
 2. Try to replace the trimap results with the results from semantic segmentation.
