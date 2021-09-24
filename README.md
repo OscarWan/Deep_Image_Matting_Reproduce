@@ -16,4 +16,4 @@ Download [test data](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#t
 Go to the [website](https://sites.google.com/view/deepimagematting#h.p_LwcLE-VLY7-S) to contact the author for the use of the dataset.
 
 # Reproduce DIM
-1. Prepare for the training by unziping folders (run [data_unzip.sbatch](https://github.com/OscarWan/Deep_Image_Matting_Reproduce/blob/main/data_unzip.sbatch)), getting file lists, and generalizing figures (run [data_preprocess.sbatch]()).
+1. Prepare for the training by unziping folders (run [data_unzip.sbatch](https://github.com/OscarWan/Deep_Image_Matting_Reproduce/blob/main/data_unzip.sbatch)), getting file lists, and generalizing figures (run [data_preprocess.sbatch](https://github.com/OscarWan/Deep_Image_Matting_Reproduce/blob/main/data_preprocess.sbatch)).
