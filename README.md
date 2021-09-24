@@ -17,3 +17,5 @@ Go to the [website](https://sites.google.com/view/deepimagematting#h.p_LwcLE-VLY
 
 # Reproduce DIM
 1. Prepare for the training by unziping folders (run [data_unzip.sbatch](https://github.com/OscarWan/Deep_Image_Matting_Reproduce/blob/main/data_unzip.sbatch)), getting file lists, and generalizing figures (run [data_preprocess.sbatch](https://github.com/OscarWan/Deep_Image_Matting_Reproduce/blob/main/data_preprocess.sbatch)).
+2. Train the models to get a best checkpoint by running [js_train.s](https://github.com/OscarWan/Deep_Image_Matting_Reproduce/blob/main/js_train.s) file.
+3. To test the score of trained model, run [js_test.s](https://github.com/OscarWan/Deep_Image_Matting_Reproduce/blob/main/js_test.s) jobscript.
